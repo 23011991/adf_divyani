@@ -1,0 +1,4602 @@
+WEBVTT
+
+1
+00:00:50.540 --> 00:00:52.299
+Umesh Mahajan: Hello! Hey! Hi! All.
+
+2
+00:00:55.090 --> 00:00:55.940
+Sandeep Budruck: I sit.
+
+3
+00:00:56.330 --> 00:00:57.110
+Pratik Wagh: Hello, sir!
+
+4
+00:00:57.360 --> 00:00:58.030
+Prathmesh Kasture: And isn't.
+
+5
+00:01:00.130 --> 00:01:00.750
+Umesh Mahajan: Being.
+
+6
+00:01:01.890 --> 00:01:07.530
+Umesh Mahajan: So, I'll just cover few topics that are pinned. Then we can switch to
+
+7
+00:01:19.540 --> 00:01:22.160
+Umesh Mahajan: switch to question. And that says, Okay.
+
+8
+00:01:29.850 --> 00:01:33.469
+Umesh Mahajan: okay, let me know, once you're able to see the screen.
+
+9
+00:01:40.550 --> 00:01:42.409
+Prasanna Tirmare: Yes, sir, we are able to fix.
+
+10
+00:01:43.010 --> 00:01:43.660
+Umesh Mahajan: Okay.
+
+11
+00:01:47.400 --> 00:01:52.610
+Umesh Mahajan: so what we are going to look at today is the stream. So we saw
+
+12
+00:01:53.450 --> 00:01:58.819
+Umesh Mahajan: how we can create the functions with the different languages.
+
+13
+00:01:59.000 --> 00:01:59.880
+Umesh Mahajan: All done.
+
+14
+00:02:00.050 --> 00:02:01.030
+Umesh Mahajan: I'll be
+
+15
+00:02:02.055 --> 00:02:02.960
+Umesh Mahajan: create
+
+16
+00:02:03.190 --> 00:02:07.919
+Umesh Mahajan: the pipes we already saw. We are looking at the stream.
+
+17
+00:02:10.120 --> 00:02:23.250
+Umesh Mahajan: So the example I have given here what we want to do achieve what stream does. Basically. So it captures the data changes. It's been used for CDC. Change data capture.
+
+18
+00:02:23.857 --> 00:02:28.230
+Umesh Mahajan: Whenever you do update, insert, or delete on the table.
+
+19
+00:02:31.160 --> 00:02:33.370
+Umesh Mahajan: It captures that information.
+
+20
+00:02:33.760 --> 00:02:34.940
+Umesh Mahajan: and
+
+21
+00:02:35.050 --> 00:02:36.270
+Umesh Mahajan: you can
+
+22
+00:02:37.330 --> 00:02:46.810
+Umesh Mahajan: once once that update delete is captured, you can also trigger or task, something based on that. I'll show one example of that.
+
+23
+00:02:46.930 --> 00:02:49.799
+Umesh Mahajan: or I will explain how it happens.
+
+24
+00:02:50.190 --> 00:02:52.940
+Umesh Mahajan: Suppose I have order table?
+
+25
+00:02:54.270 --> 00:02:57.019
+Umesh Mahajan: Right? So this is my order table
+
+26
+00:02:57.602 --> 00:03:02.469
+Umesh Mahajan: which include order. Id, you may, customer, id order date.
+
+27
+00:03:02.620 --> 00:03:06.729
+Umesh Mahajan: Let's insert some data into this order table.
+
+28
+00:03:11.860 --> 00:03:15.270
+Umesh Mahajan: This is the order table will look like.
+
+29
+00:03:20.900 --> 00:03:27.800
+Umesh Mahajan: which has 3 rows into it. Order id customer, id order, date, and status as its new.
+
+30
+00:03:27.850 --> 00:03:32.209
+Umesh Mahajan: So what I'm going to do now I'm going to create a stream
+
+31
+00:03:32.500 --> 00:03:33.970
+Umesh Mahajan: on that table
+
+32
+00:03:33.990 --> 00:03:35.140
+Umesh Mahajan: order table.
+
+33
+00:03:35.290 --> 00:03:39.430
+Umesh Mahajan: So let's create this order stream on this table.
+
+34
+00:03:41.200 --> 00:03:48.609
+Umesh Mahajan: So the syntax per is create stream orders. Name of the stream on table and the name of the table.
+
+35
+00:03:48.750 --> 00:03:50.740
+Umesh Mahajan: So I created single
+
+36
+00:03:51.564 --> 00:03:53.740
+Umesh Mahajan: stream on single table.
+
+37
+00:03:57.410 --> 00:04:05.099
+Umesh Mahajan: So this stream is created as we created this stream. Just want to show what is in the stream. So this stream
+
+38
+00:04:05.490 --> 00:04:12.289
+Umesh Mahajan: is blank right now what it creates. It creates the same structure as a table
+
+39
+00:04:12.560 --> 00:04:16.959
+Umesh Mahajan: along with that it adds this 3 columns to it.
+
+40
+00:04:16.990 --> 00:04:19.480
+Umesh Mahajan: One is metadata action.
+
+41
+00:04:19.700 --> 00:04:26.439
+Umesh Mahajan: This means whether you're adding a new record, you are updating record, or you are deleting record.
+
+42
+00:04:27.480 --> 00:04:37.760
+Umesh Mahajan: It's like a Cdc change data capture in databases when you do the change data, capture that information. Similarly, it captures, whether insert Update or delete.
+
+43
+00:04:38.100 --> 00:04:45.829
+Umesh Mahajan: Then you have any metadata update and a row id for each and every record
+
+44
+00:04:46.170 --> 00:04:48.539
+Umesh Mahajan: to identify the record
+
+45
+00:04:53.580 --> 00:04:54.330
+Umesh Mahajan: there.
+
+46
+00:04:56.250 --> 00:05:00.139
+Umesh Mahajan: Then what I'll do I'll perform some Dml operation.
+
+47
+00:05:00.170 --> 00:05:04.239
+Umesh Mahajan: So what I'll do I will add one more record to it.
+
+48
+00:05:04.260 --> 00:05:06.309
+Umesh Mahajan: Now, if you see.
+
+49
+00:05:06.680 --> 00:05:08.529
+Umesh Mahajan: I added this record.
+
+50
+00:05:08.730 --> 00:05:10.270
+Umesh Mahajan: So now the record
+
+51
+00:05:10.400 --> 00:05:11.500
+Umesh Mahajan: become
+
+52
+00:05:12.010 --> 00:05:12.890
+Umesh Mahajan: Ford.
+
+53
+00:05:13.070 --> 00:05:19.799
+Umesh Mahajan: because we added this one more record to it, and you can see all the records are new.
+
+54
+00:05:20.290 --> 00:05:22.750
+Umesh Mahajan: Now let's see what happens to stream.
+
+55
+00:05:24.430 --> 00:05:26.650
+Umesh Mahajan: As we added a new record.
+
+56
+00:05:27.110 --> 00:05:30.830
+Umesh Mahajan: and if I query the stream, what will happen?
+
+57
+00:05:30.950 --> 00:05:33.329
+Umesh Mahajan: It will log that record change.
+
+58
+00:05:33.890 --> 00:05:36.760
+Umesh Mahajan: You can see it's a it's insert.
+
+59
+00:05:37.100 --> 00:05:39.290
+Umesh Mahajan: Now the question might
+
+60
+00:05:39.370 --> 00:05:40.890
+Umesh Mahajan: you might have
+
+61
+00:05:40.910 --> 00:05:43.899
+Umesh Mahajan: oh, by it meets the 1st 3 records.
+
+62
+00:05:44.430 --> 00:05:48.560
+Umesh Mahajan: Can anybody guess why it missed the 1st 3 records?
+
+63
+00:05:53.210 --> 00:05:56.369
+Umesh Mahajan: Why the stream is not showing 1, st 3 records.
+
+64
+00:05:56.370 --> 00:05:59.180
+Samir More: Because it only capture chain data.
+
+65
+00:05:59.800 --> 00:06:01.020
+Umesh Mahajan: The no.
+
+66
+00:06:02.640 --> 00:06:05.759
+Vikas k kamble: It's updated before before creating steam.
+
+67
+00:06:06.230 --> 00:06:14.069
+Umesh Mahajan: Yeah. So we created stream after insertion of data. So you see, this 1st 3 records were inserted here.
+
+68
+00:06:14.750 --> 00:06:17.900
+Umesh Mahajan: and then after that, we created it. The stream.
+
+69
+00:06:17.960 --> 00:06:25.199
+Umesh Mahajan: if you, we create the stream on blank table and then insert it, would have captured here as well.
+
+70
+00:06:26.650 --> 00:06:29.089
+Umesh Mahajan: This record would have been captured
+
+71
+00:06:30.430 --> 00:06:31.470
+Umesh Mahajan: late.
+
+72
+00:06:32.570 --> 00:06:42.189
+Umesh Mahajan: Now we insert it for record. Let's update the status of a order, for where order is one to ship.
+
+73
+00:06:46.280 --> 00:06:50.619
+Umesh Mahajan: I change it. I'll let's bury one more time the stream.
+
+74
+00:06:50.680 --> 00:06:54.409
+Umesh Mahajan: If I query the stream, you can see now.
+
+75
+00:06:55.040 --> 00:06:56.240
+Umesh Mahajan: It has
+
+76
+00:06:56.590 --> 00:06:59.180
+Umesh Mahajan: 3 records. Why, 3 records.
+
+77
+00:06:59.290 --> 00:07:01.330
+Umesh Mahajan: This is the same record.
+
+78
+00:07:02.000 --> 00:07:02.910
+Umesh Mahajan: Okay?
+
+79
+00:07:03.696 --> 00:07:06.329
+Umesh Mahajan: Where which get an update.
+
+80
+00:07:08.790 --> 00:07:15.130
+Umesh Mahajan: And this is the new record. I mean the same record. But get an update here. So
+
+81
+00:07:15.240 --> 00:07:30.789
+Umesh Mahajan: you'll see the this same record is inserted into the stream. And this record 100 is deleted and sorry. What happened to this shift. Sorry status has been changing new to ship.
+
+82
+00:07:30.840 --> 00:07:32.870
+Umesh Mahajan: So in the stream it is
+
+83
+00:07:32.890 --> 00:07:36.620
+Umesh Mahajan: inserted, and previous record is deleted.
+
+84
+00:07:38.090 --> 00:07:43.759
+Umesh Mahajan: and it tells that this gotten an update update is true
+
+85
+00:07:43.910 --> 00:07:44.910
+Umesh Mahajan: to this.
+
+86
+00:07:48.100 --> 00:07:52.390
+Umesh Mahajan: Yeah. And you can see that it has the same metadata id
+
+87
+00:07:52.980 --> 00:07:56.079
+Umesh Mahajan: for this record, telling that it's the same record.
+
+88
+00:07:57.230 --> 00:08:00.020
+Umesh Mahajan: Why, this metadata is provided.
+
+89
+00:08:00.140 --> 00:08:03.030
+Umesh Mahajan: Probably if you have multiple of
+
+90
+00:08:03.330 --> 00:08:09.229
+Umesh Mahajan: this to uniquely identify and check that these 2 are the same records.
+
+91
+00:08:12.420 --> 00:08:22.559
+Umesh Mahajan: And what I do I have done. Deletion of record where I order Id is to. I'm going to query the stream again.
+
+92
+00:08:23.060 --> 00:08:29.280
+Umesh Mahajan: Now you can see that I have one more record added. But here, now it's just a delete.
+
+93
+00:08:30.270 --> 00:08:33.340
+Umesh Mahajan: My second record is deleted
+
+94
+00:08:34.250 --> 00:08:36.170
+Umesh Mahajan: now. Okay?
+
+95
+00:08:38.480 --> 00:08:47.270
+Umesh Mahajan: And if I query, yeah, that that's the last point. And then this is the query to the stream just to check it.
+
+96
+00:08:47.300 --> 00:08:54.870
+Umesh Mahajan: I can also write a stream in a on a blank table so that it can capture everything. So let's do that as well
+
+97
+00:09:00.350 --> 00:09:02.240
+Umesh Mahajan: support this stream
+
+98
+00:09:06.070 --> 00:09:07.500
+Umesh Mahajan: I created
+
+99
+00:09:07.590 --> 00:09:09.340
+Umesh Mahajan: on the blank table.
+
+100
+00:09:15.870 --> 00:09:19.039
+Umesh Mahajan: The order table is created. Stream
+
+101
+00:09:19.100 --> 00:09:21.400
+Umesh Mahajan: stream is also created.
+
+102
+00:09:21.800 --> 00:09:24.820
+Umesh Mahajan: I'm inserting this many records.
+
+103
+00:09:28.060 --> 00:09:34.149
+Umesh Mahajan: Now I have 3 records inserted, and I can query the stream also.
+
+104
+00:09:34.800 --> 00:09:37.710
+Umesh Mahajan: So you'll see all we'll say insert.
+
+105
+00:09:38.040 --> 00:09:38.940
+Umesh Mahajan: But I
+
+106
+00:09:39.440 --> 00:09:47.010
+Umesh Mahajan: now, it says, insert that a new record there, and there is no update on this 3 records
+
+107
+00:09:52.540 --> 00:09:59.820
+Umesh Mahajan: I updated the record or inserted a new record. So I'll have 4 records now
+
+108
+00:10:00.770 --> 00:10:05.099
+Umesh Mahajan: in my table. The stream will also show the 4 records.
+
+109
+00:10:08.720 --> 00:10:10.780
+Umesh Mahajan: and all are insert type
+
+110
+00:10:11.460 --> 00:10:16.540
+Umesh Mahajan: alright. And then, after any changes, I do, whether it's update
+
+111
+00:10:16.570 --> 00:10:20.610
+Umesh Mahajan: or whether it's a delete, it will be shown here.
+
+112
+00:10:21.550 --> 00:10:22.510
+Umesh Mahajan: Say this
+
+113
+00:10:23.020 --> 00:10:27.550
+Umesh Mahajan: update, and this record is a delete record and query the string.
+
+114
+00:10:27.630 --> 00:10:31.350
+Umesh Mahajan: So all the data that been executed is
+
+115
+00:10:32.990 --> 00:10:34.720
+Umesh Mahajan: type in the detail
+
+116
+00:10:49.130 --> 00:10:51.959
+Umesh Mahajan: delete should show here.
+
+117
+00:10:54.140 --> 00:10:58.749
+Umesh Mahajan: I think I need to enable one more parameter in order to do that.
+
+118
+00:10:59.300 --> 00:11:01.660
+Umesh Mahajan: But idea here is.
+
+119
+00:11:01.710 --> 00:11:06.620
+Umesh Mahajan: It captures all the information of change, data capture.
+
+120
+00:11:06.780 --> 00:11:10.680
+Umesh Mahajan: Now, Abola is a risky use. Practical use. How about that?
+
+121
+00:11:11.460 --> 00:11:12.575
+Umesh Mahajan: Suppose?
+
+122
+00:11:14.430 --> 00:11:16.580
+Umesh Mahajan: upnet trigger the Sunai.
+
+123
+00:11:20.210 --> 00:11:24.850
+Umesh Mahajan: So many appalibataki snowflake does not have a trigger.
+
+124
+00:11:25.120 --> 00:11:33.040
+Umesh Mahajan: Alright just a record. Note that triggers with the Ea action. So it should trigger this thing.
+
+125
+00:11:34.230 --> 00:11:35.830
+Umesh Mahajan: This action!
+
+126
+00:11:36.420 --> 00:11:41.024
+Umesh Mahajan: Alright! So you can achieve the trigger functionality.
+
+127
+00:11:41.670 --> 00:11:48.799
+Umesh Mahajan: something like this. So anything that up using the task also task can be also used as a trigger point.
+
+128
+00:11:48.950 --> 00:11:54.590
+Umesh Mahajan: Okay? And let's see one example of that, how we can use that.
+
+129
+00:11:56.480 --> 00:12:01.719
+Umesh Mahajan: So I'll go to the next example of procedure.
+
+130
+00:12:01.760 --> 00:12:03.690
+Umesh Mahajan: So yeah, I'll pick your hotel
+
+131
+00:12:04.720 --> 00:12:09.173
+Umesh Mahajan: same table with them order and order details.
+
+132
+00:12:10.180 --> 00:12:11.390
+Umesh Mahajan: So
+
+133
+00:12:11.820 --> 00:12:20.760
+Umesh Mahajan: Mira. Data. You remember, we have in data like the raw layer, refined layer, a trusted layer.
+
+134
+00:12:24.330 --> 00:12:39.200
+Umesh Mahajan: So in, let's suppose my staging order is a raw table. Whenever data load happens to this order, staging table. After that it should load the data into the orders tables.
+
+135
+00:12:39.380 --> 00:12:56.810
+Umesh Mahajan: So in this table the data will be always refresh everything. Here. The data will be always appended, or it can have an operation to update or complex logic we can have in the load of this table.
+
+136
+00:12:57.758 --> 00:13:04.940
+Umesh Mahajan: We can also have pick the data from staging file. But here I just considered the staging table.
+
+137
+00:13:05.490 --> 00:13:06.380
+Umesh Mahajan: Okay?
+
+138
+00:13:06.610 --> 00:13:10.100
+Umesh Mahajan: So I have a staging table. I have a order table.
+
+139
+00:13:10.130 --> 00:13:11.369
+Umesh Mahajan: but I've been.
+
+140
+00:13:11.870 --> 00:13:13.280
+Rakesh Anturlikar: Little Simplers.
+
+141
+00:13:13.420 --> 00:13:16.119
+Rakesh Anturlikar: You don't scan killer.
+
+142
+00:13:17.200 --> 00:13:17.990
+Umesh Mahajan: Hello!
+
+143
+00:13:18.320 --> 00:13:19.360
+Rakesh Anturlikar: Talk more about
+
+144
+00:13:19.740 --> 00:13:21.040
+Rakesh Anturlikar: not in Google, drive.
+
+145
+00:13:21.700 --> 00:13:22.720
+Umesh Mahajan: Alone.
+
+146
+00:13:23.510 --> 00:13:24.280
+Rakesh Anturlikar: Lipsy.
+
+147
+00:13:25.820 --> 00:13:26.920
+Umesh Mahajan: Any question.
+
+148
+00:13:33.120 --> 00:13:34.160
+Umesh Mahajan: Hello.
+
+149
+00:13:39.480 --> 00:13:40.320
+Umesh Mahajan: okay.
+
+150
+00:13:47.120 --> 00:13:53.250
+Umesh Mahajan: So I created a staging table. Then order table.
+
+151
+00:13:57.780 --> 00:13:59.489
+Umesh Mahajan: Are you so far with me?
+
+152
+00:14:01.820 --> 00:14:02.550
+Rahul Ugale: Here, sir!
+
+153
+00:14:02.550 --> 00:14:03.410
+Shubham Hirave: Yes, sir.
+
+154
+00:14:03.930 --> 00:14:10.240
+Umesh Mahajan: Okay. You attend the class from home or from where.
+
+155
+00:14:12.220 --> 00:14:13.819
+Sandeep Budruck: So from home.
+
+156
+00:14:13.820 --> 00:14:14.540
+Venkatesh Allapure: Blossom.
+
+157
+00:14:15.550 --> 00:14:16.320
+Umesh Mahajan: Okay.
+
+158
+00:14:28.600 --> 00:14:36.110
+Umesh Mahajan: okay, I'll talk to later, regardless. So I inserted the 2 records into order staging table.
+
+159
+00:14:36.160 --> 00:14:43.980
+Umesh Mahajan: So jump B order staging, pay record, insert hotel. I want to create a procedure.
+
+160
+00:14:44.720 --> 00:14:58.760
+Umesh Mahajan: Now, this is the stored procedure. So if you remember, I'm the last time Snow Park breaker we created Udf there, and we use the Udf in our code.
+
+161
+00:15:02.230 --> 00:15:04.300
+Umesh Mahajan: But these are the procedures
+
+162
+00:15:04.887 --> 00:15:15.130
+Umesh Mahajan: similar to functions, but functions, you call it in your SQL. Code which has an argument here. It's a stored procedure
+
+163
+00:15:15.671 --> 00:15:31.560
+Umesh Mahajan: which executes something. So I said, create a stored procedure, return a string to it. And language is sequel. What is it? Does? It begins, it is insert, or into the order table
+
+164
+00:15:31.880 --> 00:15:33.750
+Umesh Mahajan: from staging table.
+
+165
+00:15:34.030 --> 00:15:42.330
+Umesh Mahajan: So this simple statement I wrote, whenever you see the inside here, and it will be executed.
+
+166
+00:15:43.250 --> 00:15:46.239
+Umesh Mahajan: This is the stored procedure I call created.
+
+167
+00:15:46.420 --> 00:15:49.319
+Umesh Mahajan: So let's create a simple stored procedure.
+
+168
+00:15:49.380 --> 00:15:53.970
+Umesh Mahajan: This true procedure is created. And it's a language is a SQL. Piece language.
+
+169
+00:15:54.420 --> 00:16:10.849
+Umesh Mahajan: Now, Abi Manabulaki, Jeff, be record incerto it, or periodically, it should load the data into and after that it drops the deletes the stage records from staging table because you don't want to reload multiple time.
+
+170
+00:16:12.115 --> 00:16:18.414
+Umesh Mahajan: So now I want to execute this every morning, let's say
+
+171
+00:16:20.000 --> 00:16:21.230
+Umesh Mahajan: 5.
+
+172
+00:16:25.860 --> 00:16:35.542
+Umesh Mahajan: So I can create a task. So what task does is it creates? It's execute this
+
+173
+00:16:36.420 --> 00:16:40.760
+Umesh Mahajan: uses the warehouse on the schedule. The pron schedule.
+
+174
+00:16:40.830 --> 00:16:47.909
+Umesh Mahajan: There is expression for cron job. Anybody has work or schedule. The Chron.
+
+175
+00:16:50.750 --> 00:16:51.130
+Shivraj Wankhede: Oh! So!
+
+176
+00:16:51.130 --> 00:16:52.010
+Rahul Ugale: No, sir.
+
+177
+00:16:55.510 --> 00:16:57.250
+Venkatesh Allapure: 0 1st value.
+
+178
+00:16:57.260 --> 00:16:58.539
+Venkatesh Allapure: I mean, it's.
+
+179
+00:16:58.540 --> 00:16:59.429
+Umesh Mahajan: And second
+
+180
+00:17:00.370 --> 00:17:01.780
+Umesh Mahajan: Yup, that's it
+
+181
+00:17:02.960 --> 00:17:04.220
+Venkatesh Allapure: Pardon me
+
+182
+00:17:04.310 --> 00:17:05.860
+Venkatesh Allapure: last month.
+
+183
+00:17:05.920 --> 00:17:07.150
+Venkatesh Allapure: Big big
+
+184
+00:17:07.599 --> 00:17:08.420
+Venkatesh Allapure: years.
+
+185
+00:17:18.520 --> 00:17:19.140
+Umesh Mahajan: Okay.
+
+186
+00:17:19.310 --> 00:17:21.769
+Umesh Mahajan: yay, uska format right there.
+
+187
+00:17:25.579 --> 00:17:29.919
+Umesh Mahajan: So the 1st are minutes. 1st 0 or first, st
+
+188
+00:17:30.160 --> 00:17:32.219
+Umesh Mahajan: let's indicate the minute.
+
+189
+00:17:32.400 --> 00:17:34.860
+Umesh Mahajan: then second, indicate the hour.
+
+190
+00:17:34.980 --> 00:17:38.799
+Umesh Mahajan: the 3rd indicate day of a month.
+
+191
+00:17:39.090 --> 00:17:40.150
+Umesh Mahajan: Then
+
+192
+00:17:45.800 --> 00:17:50.390
+Umesh Mahajan: then next indicates the month and day of a week.
+
+193
+00:17:51.290 --> 00:17:56.230
+Umesh Mahajan: Okay, suppose you want to run every day. So you just
+
+194
+00:17:56.650 --> 00:17:58.615
+Umesh Mahajan: you just are.
+
+195
+00:18:00.230 --> 00:18:03.750
+Umesh Mahajan: you can just enable, if you want to run on
+
+196
+00:18:03.810 --> 00:18:06.379
+Umesh Mahajan: 1st of every month, so you can just
+
+197
+00:18:06.730 --> 00:18:08.839
+Umesh Mahajan: specify the one there
+
+198
+00:18:09.370 --> 00:18:10.260
+Umesh Mahajan: lake.
+
+199
+00:18:10.380 --> 00:18:13.469
+Umesh Mahajan: So here must be some examples.
+
+200
+00:18:13.900 --> 00:18:17.619
+Umesh Mahajan: They wouldn't have given the example. That's fine.
+
+201
+00:18:17.870 --> 00:18:23.959
+Umesh Mahajan: You can have, create that cochron expression to execute at that particular time.
+
+202
+00:18:24.100 --> 00:18:28.150
+Umesh Mahajan: Okay? So if you want to execute every
+
+203
+00:18:28.160 --> 00:18:42.080
+Umesh Mahajan: minute, you can just specify one. So every hour, every it will execute start meaning every minute here. If you specify one, it will execute
+
+204
+00:18:42.310 --> 00:18:45.760
+Umesh Mahajan: every hour in 1st minute like that.
+
+205
+00:18:45.910 --> 00:18:46.860
+Umesh Mahajan: So
+
+206
+00:18:47.140 --> 00:18:59.549
+Umesh Mahajan: if you say that, execute at this particular day of a month, you can specify that if you want to execute for all, just specify the star, and it will execute like that.
+
+207
+00:18:59.700 --> 00:19:04.080
+Umesh Mahajan: So in our schedule what we said, and you can also specify
+
+208
+00:19:04.180 --> 00:19:20.690
+Umesh Mahajan: 0 0 star star. So what it means I want to execute route at 12 min, 12 h. Sorry 0 min 0 h every day, basically 0 0, meaning every day at
+
+209
+00:19:20.890 --> 00:19:30.070
+Umesh Mahajan: 12 0 min and 0 h, which is the 12 am. So every day it will execute 12 Am.
+
+210
+00:19:30.160 --> 00:19:36.070
+Umesh Mahajan: We also specify? Utc the time zone. That's what we specify.
+
+211
+00:19:36.150 --> 00:19:41.130
+Umesh Mahajan: If you want to specify every day. 12 12 Am.
+
+212
+00:19:41.390 --> 00:19:47.749
+Umesh Mahajan: On Thursday, so you can specify the day of the week also.
+
+213
+00:19:47.880 --> 00:19:49.900
+Umesh Mahajan: that's a prong expression.
+
+214
+00:19:52.720 --> 00:19:56.750
+Umesh Mahajan: Okay? And you will see. Prompt the hardware at the
+
+215
+00:20:11.920 --> 00:20:12.650
+Umesh Mahajan: boom.
+
+216
+00:20:15.570 --> 00:20:18.480
+Umesh Mahajan: You'll see here the Chron.
+
+217
+00:20:39.040 --> 00:20:42.800
+Umesh Mahajan: So it gives the information of the wrong
+
+218
+00:20:43.562 --> 00:20:47.717
+Umesh Mahajan: command, and can set this expression
+
+219
+00:20:49.140 --> 00:20:55.339
+Umesh Mahajan: the schedule. It is similar to windows. Scheduler. Does anybody know what windows scheduler
+
+220
+00:21:00.420 --> 00:21:04.879
+Umesh Mahajan: task scheduler. So in windows. Here is the task, Scheduler.
+
+221
+00:21:07.600 --> 00:21:12.869
+Umesh Mahajan: If you search for task, Scheduler, you'll see that you can schedule the some task.
+
+222
+00:21:13.010 --> 00:21:14.510
+Umesh Mahajan: task, Jessica.
+
+223
+00:21:15.660 --> 00:21:17.979
+Umesh Mahajan: you can have a
+
+224
+00:21:18.060 --> 00:21:27.260
+Umesh Mahajan: your security scan every day so you can add it and use that something like create your basic task
+
+225
+00:21:28.019 --> 00:21:34.410
+Umesh Mahajan: to execute subscript. So this I want to do this.
+
+226
+00:21:34.460 --> 00:21:47.550
+Umesh Mahajan: It should execute daily, weekly, monthly on time. Whenever computer starts, whenever I log on or whenever specific people log off. So you want to. Whenever you log off
+
+227
+00:21:47.970 --> 00:21:58.550
+Umesh Mahajan: or event, log or daily. Suppose Antivirus run, scan, run, Karnakat. Now it should start every day at this time.
+
+228
+00:21:58.680 --> 00:22:03.699
+Umesh Mahajan: start the program again, specify the program name to start
+
+229
+00:22:03.870 --> 00:22:09.230
+Umesh Mahajan: or I can specify. Send an email to
+
+230
+00:22:09.470 --> 00:22:12.869
+Umesh Mahajan: here. So it will automatically send an email
+
+231
+00:22:13.080 --> 00:22:30.970
+Umesh Mahajan: to whatever you specify or display message which will display the message and pop up you. So this is a task, basically. So as this is a task similarly, Chron in Linux is a way to schedule the things
+
+232
+00:22:33.520 --> 00:22:34.830
+Umesh Mahajan: me clear. What
+
+233
+00:22:35.110 --> 00:22:37.719
+Umesh Mahajan: Chron above bar use coloured
+
+234
+00:22:39.220 --> 00:22:43.879
+Umesh Mahajan: in air flow also the scheduler behind uses the crawl.
+
+235
+00:22:48.610 --> 00:22:49.590
+Umesh Mahajan: Okay.
+
+236
+00:22:50.140 --> 00:22:51.350
+Umesh Mahajan: So what I mean
+
+237
+00:22:51.500 --> 00:22:54.641
+Umesh Mahajan: going to do now create a task.
+
+238
+00:22:55.270 --> 00:23:03.399
+Umesh Mahajan: with to execute. Now get, ask, execute Korea G. Time. But, Karega, it's going to call the procedure.
+
+239
+00:23:03.590 --> 00:23:15.090
+Umesh Mahajan: Yep, procedure care, correct data load correct. Now, this procedure has to be auto load every time. So I need to schedule. Make this active.
+
+240
+00:23:15.840 --> 00:23:17.930
+Umesh Mahajan: Okay? So
+
+241
+00:23:18.120 --> 00:23:20.389
+Umesh Mahajan: I'm going to make it active.
+
+242
+00:23:34.040 --> 00:23:36.370
+Umesh Mahajan: So now this task will execute
+
+243
+00:23:36.610 --> 00:23:42.069
+Umesh Mahajan: daily, and you can change. Check the history of the task execution.
+
+244
+00:23:42.270 --> 00:23:50.680
+Umesh Mahajan: Here is the information schema task history. And you can see the query. It
+
+245
+00:23:51.240 --> 00:23:52.510
+Umesh Mahajan: let me show you
+
+246
+00:23:59.770 --> 00:24:05.729
+Umesh Mahajan: the query. It is calling the call load order is something. It's calling.
+
+247
+00:24:06.110 --> 00:24:06.910
+Samir More: So that.
+
+248
+00:24:07.200 --> 00:24:08.000
+Umesh Mahajan: Yep.
+
+249
+00:24:08.000 --> 00:24:11.768
+Samir More: This task will be executed only once at
+
+250
+00:24:12.370 --> 00:24:14.800
+Samir More: 12. Yeah, is it right?
+
+251
+00:24:15.060 --> 00:24:16.320
+Umesh Mahajan: Correct, correct.
+
+252
+00:24:16.610 --> 00:24:17.370
+Samir More: Open.
+
+253
+00:24:17.370 --> 00:24:25.770
+Umesh Mahajan: Every day. 12 Am. This will be executed. It's in the State. It's scheduled right now. But let me see.
+
+254
+00:24:26.310 --> 00:24:27.959
+Umesh Mahajan: change this to
+
+255
+00:24:29.950 --> 00:24:32.179
+Umesh Mahajan: every day, 0 min.
+
+256
+00:24:33.180 --> 00:24:35.039
+Umesh Mahajan: every minute. Suppose.
+
+257
+00:24:41.560 --> 00:24:44.379
+Venkatesh Allapure: Sir, it will execute me. So
+
+258
+00:24:45.440 --> 00:24:46.630
+Venkatesh Allapure: we are, huh?
+
+259
+00:24:46.920 --> 00:24:48.720
+Venkatesh Allapure: Okay. Current age time.
+
+260
+00:24:48.820 --> 00:24:50.080
+Venkatesh Allapure: not over
+
+261
+00:24:50.360 --> 00:24:51.570
+Venkatesh Allapure: local timestamp.
+
+262
+00:24:54.606 --> 00:24:57.380
+Umesh Mahajan: Yeah, right now, it will take Utc.
+
+263
+00:24:58.430 --> 00:25:02.799
+Umesh Mahajan: whatever the Utc time it is, it will take that.
+
+264
+00:25:04.140 --> 00:25:06.419
+Umesh Mahajan: because that's what we specify.
+
+265
+00:25:08.190 --> 00:25:10.679
+Umesh Mahajan: So if I do, es t.
+
+266
+00:25:50.780 --> 00:25:52.479
+Umesh Mahajan: There is no data.
+
+267
+00:25:52.630 --> 00:25:57.800
+Umesh Mahajan: it will load the return whenever it execute, the task will execute.
+
+268
+00:25:58.340 --> 00:26:01.060
+Umesh Mahajan: And here is the
+
+269
+00:26:02.210 --> 00:26:04.679
+Umesh Mahajan: record of that. It's scheduled.
+
+270
+00:26:04.830 --> 00:26:07.120
+Umesh Mahajan: it is scheduled for what time
+
+271
+00:26:07.730 --> 00:26:10.810
+Umesh Mahajan: this is scheduled for
+
+272
+00:26:12.200 --> 00:26:14.000
+Umesh Mahajan: 7 am.
+
+273
+00:26:20.500 --> 00:26:22.729
+Umesh Mahajan: Scheduled for 4, 7
+
+274
+00:26:27.030 --> 00:26:28.709
+Umesh Mahajan: y. 4 m.
+
+275
+00:26:38.370 --> 00:26:42.110
+Umesh Mahajan: Minus 7 minus each times 2.
+
+276
+00:27:08.730 --> 00:27:09.570
+Venkatesh Allapure: Madam! Speak.
+
+277
+00:27:09.960 --> 00:27:13.109
+Samir More: Sarah. It is waiting for new minutes to start.
+
+278
+00:27:13.450 --> 00:27:14.040
+Samir More: Can we.
+
+279
+00:27:14.040 --> 00:27:14.770
+Umesh Mahajan: Relief.
+
+280
+00:27:15.460 --> 00:27:19.400
+Umesh Mahajan: Yeah, but I don't know why it says scheduled time.
+
+281
+00:27:22.190 --> 00:27:25.710
+Umesh Mahajan: It's it's scheduled, but it's scheduled for
+
+282
+00:27:27.090 --> 00:27:30.690
+Umesh Mahajan: next next schedule. I'm just trying to check
+
+283
+00:27:31.466 --> 00:27:34.053
+Umesh Mahajan: very schedules and time.
+
+284
+00:27:34.700 --> 00:27:36.520
+Venkatesh Allapure: Take the records. I think.
+
+285
+00:27:37.370 --> 00:27:39.090
+Umesh Mahajan: Sorry recording.
+
+286
+00:27:39.630 --> 00:27:40.890
+Venkatesh Allapure: Record checks, though.
+
+287
+00:27:41.170 --> 00:27:42.876
+Venkatesh Allapure: Good. I think so. Instead of guys.
+
+288
+00:27:43.120 --> 00:27:47.359
+Umesh Mahajan: We also forgot to start the recording. Yeah, I'll I'll change the record.
+
+289
+00:27:48.890 --> 00:27:50.990
+Umesh Mahajan: anybody started the recording
+
+290
+00:27:52.400 --> 00:27:54.030
+Umesh Mahajan: zoom recording? I mean.
+
+291
+00:27:54.620 --> 00:27:56.040
+Shivraj Wankhede: Recording is.
+
+292
+00:27:57.760 --> 00:27:59.310
+Rahul Ugale: Recording is on
+
+293
+00:27:59.430 --> 00:27:59.990
+Rahul Ugale: yes, yeah.
+
+294
+00:27:59.990 --> 00:28:00.580
+Samir More: So them.
+
+295
+00:28:01.162 --> 00:28:02.010
+Umesh Mahajan: The account. Okay.
+
+296
+00:28:02.220 --> 00:28:03.060
+Shivraj Wankhede: For sale.
+
+297
+00:28:03.060 --> 00:28:08.559
+Umesh Mahajan: So let me query this again, and see. The task has to execute
+
+298
+00:28:09.600 --> 00:28:18.229
+Umesh Mahajan: Yup. You can see now it has executed multiple times succeed schedule, the succeed, the succeeded
+
+299
+00:28:18.440 --> 00:28:36.849
+Umesh Mahajan: now record may not be loaded at this time, because on the table truncate here the table feels a load, Nick, here, so you will see only 2 records there, or whatever the records are there in order. Table with it. Order staging table way there again. Okay.
+
+300
+00:28:38.000 --> 00:28:46.710
+Venkatesh Allapure: Also how our schedule, now happy on my current time key, as I've said, Miss select the current time
+
+301
+00:28:46.840 --> 00:28:48.790
+Venkatesh Allapure: next time, Joe, I know.
+
+302
+00:28:48.790 --> 00:28:49.630
+Umesh Mahajan: Not either.
+
+303
+00:28:49.850 --> 00:28:51.849
+Venkatesh Allapure: It is obscure time in our budgets.
+
+304
+00:28:52.340 --> 00:28:57.330
+Umesh Mahajan: Yeah, yeh, akust the other minute.
+
+305
+00:28:57.860 --> 00:29:05.290
+Umesh Mahajan: So that's why Eastern time. So this application is running on Eastern time zone. Jaban is like Canada.
+
+306
+00:29:05.938 --> 00:29:08.809
+Samir More: Is it correct? Since we are running every minute
+
+307
+00:29:08.850 --> 00:29:11.079
+Samir More: time? Zone doesn't matter.
+
+308
+00:29:11.470 --> 00:29:16.179
+Umesh Mahajan: 9, 9 we should starting time. Another thing we should do.
+
+309
+00:29:16.540 --> 00:29:21.940
+Samir More: But here we are using Astrid symbol for all. It will run every minute.
+
+310
+00:29:22.010 --> 00:29:24.399
+Samir More: If suppose we give you other time zone.
+
+311
+00:29:24.703 --> 00:29:27.929
+Samir More: then also it will turn for you. Remove. Is it track.
+
+312
+00:29:29.290 --> 00:29:36.910
+Umesh Mahajan: Yeah, it will. Anyways it. It's run with the default time and default minute. The same diagram.
+
+313
+00:29:36.910 --> 00:29:38.030
+Samir More: I'm therefore.
+
+314
+00:29:38.030 --> 00:29:39.960
+Umesh Mahajan: Like we need the same diagonal.
+
+315
+00:29:41.110 --> 00:29:43.469
+Umesh Mahajan: whether whether the time zone.
+
+316
+00:29:44.610 --> 00:29:49.219
+Venkatesh Allapure: So can you elaborate me offshore unsure workload
+
+317
+00:29:49.310 --> 00:29:52.121
+Venkatesh Allapure: time, zone flexibility. When we were.
+
+318
+00:29:53.930 --> 00:30:02.420
+Umesh Mahajan: Yeah. So what you are telling is for the same workload how to deal with the option on short time zone, right
+
+319
+00:30:03.190 --> 00:30:03.960
+Umesh Mahajan: is, if.
+
+320
+00:30:03.960 --> 00:30:05.380
+Venkatesh Allapure: They are overlapping.
+
+321
+00:30:07.720 --> 00:30:10.110
+Umesh Mahajan: Can you repeat your question or scenario?
+
+322
+00:30:11.150 --> 00:30:16.189
+Venkatesh Allapure: It means sometimes. The client asked. That.
+
+323
+00:30:17.190 --> 00:30:19.397
+Venkatesh Allapure: can you double with
+
+324
+00:30:20.010 --> 00:30:21.800
+Venkatesh Allapure: time zone overlapping with
+
+325
+00:30:21.860 --> 00:30:27.389
+Venkatesh Allapure: you, miss? You client is on us, and we are working from India
+
+326
+00:30:27.820 --> 00:30:29.030
+Venkatesh Allapure: offshore.
+
+327
+00:30:34.300 --> 00:30:35.980
+Umesh Mahajan: so what is your question?
+
+328
+00:30:36.560 --> 00:30:37.590
+Umesh Mahajan: So
+
+329
+00:30:37.930 --> 00:30:47.959
+Umesh Mahajan: your interviewer, or something is asking, are you flexible to work on a different time, zone is that your question? Is it technical, or is the interview question.
+
+330
+00:30:48.190 --> 00:30:49.090
+Venkatesh Allapure: Into your question.
+
+331
+00:30:49.700 --> 00:30:51.360
+Umesh Mahajan: Oh, okay. So
+
+332
+00:30:52.020 --> 00:31:02.170
+Umesh Mahajan: generally, I have seen. They want us to work on onshore time zone. Have some overlap
+
+333
+00:31:03.820 --> 00:31:15.490
+Umesh Mahajan: SA. 30 company Joe official company card time, subway nose patch, and no say Reggae. But if you go to the office at Gara, would you be great
+
+334
+00:31:15.740 --> 00:31:27.220
+Umesh Mahajan: still? But they expect you to stay in the office till 7, 7, 30, or 8 30, because if it's a Eastern time, whether it's a central, or
+
+335
+00:31:27.290 --> 00:31:29.329
+Umesh Mahajan: whether mountain US. Time.
+
+336
+00:31:30.590 --> 00:31:32.250
+Umesh Mahajan: so they want to work.
+
+337
+00:31:33.130 --> 00:31:38.739
+Umesh Mahajan: If the customer is euro, probably then you will have a little flexibility.
+
+338
+00:31:39.180 --> 00:31:49.649
+Umesh Mahajan: or if some customer is Australian, and they want the storage. During that time you. You have to start your day very early in the morning.
+
+339
+00:31:49.890 --> 00:32:04.370
+Umesh Mahajan: Chariot, Pachaji Shurukan abode. It depends on team to to vary so generally, officially, they say 9 to 6, or something, but unofficially it it goes anytime.
+
+340
+00:32:05.650 --> 00:32:09.510
+Umesh Mahajan: A good app support may of the ship view that if you are in the sub.
+
+341
+00:32:09.980 --> 00:32:10.790
+Umesh Mahajan: Then
+
+342
+00:32:11.120 --> 00:32:12.090
+Umesh Mahajan: tips
+
+343
+00:32:12.220 --> 00:32:16.440
+Umesh Mahajan: 3 ships, 24 by 7, supported the ship, make Amoga.
+
+344
+00:32:20.350 --> 00:32:20.990
+Venkatesh Allapure: Thank you.
+
+345
+00:32:23.730 --> 00:32:29.579
+Umesh Mahajan: I'll go to next one, which is alert so
+
+346
+00:32:29.900 --> 00:32:30.815
+Umesh Mahajan: possible.
+
+347
+00:32:32.660 --> 00:32:38.269
+Umesh Mahajan: This is the sample example. So I want to create an alert.
+
+348
+00:32:41.680 --> 00:32:44.700
+Umesh Mahajan: So what do I want to do is
+
+349
+00:32:48.240 --> 00:32:52.249
+Umesh Mahajan: with this warehouse schedule every minute.
+
+350
+00:32:52.841 --> 00:32:55.700
+Umesh Mahajan: And what it does, if
+
+351
+00:32:55.760 --> 00:33:00.257
+Umesh Mahajan: exist, if the record exists in this table?
+
+352
+00:33:44.920 --> 00:33:49.730
+Umesh Mahajan: where amount is greater than 200. Then insert into
+
+353
+00:33:49.820 --> 00:33:52.740
+Umesh Mahajan: this table some history table
+
+354
+00:33:53.323 --> 00:33:57.456
+Umesh Mahajan: that also, and same thing you can do with the
+
+355
+00:33:59.120 --> 00:34:05.219
+Umesh Mahajan: same thing you can do with the stored procedure or other thing.
+
+356
+00:34:05.250 --> 00:34:11.210
+Umesh Mahajan: The only difference here is that it it trigger on some condition
+
+357
+00:34:11.699 --> 00:34:21.580
+Umesh Mahajan: that you're writing, that if you are, if the record exists, if there is amount greater than 200 in your table
+
+358
+00:34:21.630 --> 00:34:24.149
+Umesh Mahajan: and run this every minute.
+
+359
+00:34:24.190 --> 00:34:29.809
+Umesh Mahajan: So then it's going to insert the record into order, history, or
+
+360
+00:34:30.000 --> 00:34:31.850
+Umesh Mahajan: bulk order, or
+
+361
+00:34:32.100 --> 00:34:33.330
+Umesh Mahajan: be Gordon.
+
+362
+00:34:37.580 --> 00:34:47.100
+Umesh Mahajan: So it's going to insert into the timestamp in the big order table. So this is one example of an
+
+363
+00:34:47.350 --> 00:34:51.389
+Umesh Mahajan: event-based things that we can use.
+
+364
+00:34:55.690 --> 00:34:59.604
+vikas k kamble: Setup I saw the past survey was the part of the.
+
+365
+00:34:59.960 --> 00:35:01.449
+Umesh Mahajan: We were sick day. Yeah.
+
+366
+00:35:01.590 --> 00:35:12.810
+Umesh Mahajan: we can also create. The difference is that here is a condition so in task. Can you write a condition here you will have more flexibility to write the conditions.
+
+367
+00:35:14.570 --> 00:35:24.229
+Umesh Mahajan: because there is, if task review set time, you can also create the functions or snow paths to save us a tab
+
+368
+00:35:26.841 --> 00:35:30.628
+Umesh Mahajan: or write a python code. Right? So.
+
+369
+00:35:31.330 --> 00:35:36.059
+Umesh Mahajan: so. Jq, the I don't know so initially. There was no
+
+370
+00:35:36.990 --> 00:35:45.860
+Umesh Mahajan: feature like other snow park or yachts is anything. So that's why they have introduced this feature. Now, if someone asks.
+
+371
+00:35:45.970 --> 00:35:58.949
+Umesh Mahajan: can you create an alert, why to create an alert, you already have. You can write a snow park or something, and use that. You have lot of flexibility of writing the code there. So people will
+
+372
+00:36:03.050 --> 00:36:14.400
+Umesh Mahajan: use that instead of using this alert. So that's why I took it last, because it's not that required. And people don't use that often.
+
+373
+00:36:17.550 --> 00:36:21.319
+Venkatesh Allapure: But with the task we also use in Class 13.
+
+374
+00:36:21.560 --> 00:36:22.910
+Venkatesh Allapure: Particular condition.
+
+375
+00:36:24.460 --> 00:36:26.470
+Umesh Mahajan: Sorry. What's your question?
+
+376
+00:36:27.860 --> 00:36:31.760
+Venkatesh Allapure: As well. We also use Windsor for a condition.
+
+377
+00:36:32.270 --> 00:36:34.550
+Umesh Mahajan: Which which close when?
+
+378
+00:36:36.180 --> 00:36:49.829
+Umesh Mahajan: Yeah, yeah, we can use that or any, if condition is majorly used. But if you look at the syntax of that you'll find more details about it. Like.
+
+379
+00:36:50.240 --> 00:36:51.040
+Umesh Mahajan: Bob.
+
+380
+00:36:51.950 --> 00:37:14.419
+Umesh Mahajan: it's it's basically serverless. You don't have to specify the server. It will execute on this warehouse. You can specify the conditions and use it. I would prefer to use either functions, procedures, and task or the Snow Park rather than using this sort of alert
+
+381
+00:37:14.530 --> 00:37:21.629
+Umesh Mahajan: reason. Reason is that it's they have more flexibility than this thing alerts.
+
+382
+00:37:24.920 --> 00:37:25.800
+Venkatesh Allapure: Not very good.
+
+383
+00:37:25.800 --> 00:37:34.269
+Umesh Mahajan: Do you have complicated conditions? You will have limitations on writing this conditions, complicated conditions to check and write it.
+
+384
+00:37:39.520 --> 00:37:41.810
+Umesh Mahajan: Sorry, using something.
+
+385
+00:37:43.740 --> 00:37:48.165
+Venkatesh Allapure: I'm saying that with when we create tasks, then we
+
+386
+00:37:49.090 --> 00:37:54.539
+Venkatesh Allapure: insert a condition with wind cluster using of the end clock, we can add a condition.
+
+387
+00:37:56.543 --> 00:38:03.270
+Umesh Mahajan: I have to check that instead of if, when that's what something you are trying to ask right?
+
+388
+00:38:04.170 --> 00:38:05.411
+Venkatesh Allapure: Yes, let me.
+
+389
+00:38:06.240 --> 00:38:07.540
+Umesh Mahajan: The.
+
+390
+00:38:07.540 --> 00:38:10.840
+Venkatesh Allapure: So this is when we can use wind plus for a condition.
+
+391
+00:38:11.700 --> 00:38:20.889
+Umesh Mahajan: Yeah, I have to check if we use. The reason is that I never use this in a project itself. I have use
+
+392
+00:38:21.450 --> 00:38:34.750
+Umesh Mahajan: Snow park or procedures task is also not the preferred way to use it. Because you you have a orchestrator, you can use it
+
+393
+00:38:35.290 --> 00:38:36.109
+Umesh Mahajan: that I.
+
+394
+00:38:39.630 --> 00:38:55.969
+Umesh Mahajan: So I'm just taking this. The reason is that they have this feature. But nowadays there's other very sophisticated features are available. So people don't use this alerts and other thing.
+
+395
+00:38:56.970 --> 00:39:03.849
+Vishal Gavali: Hello, sir! It's a similar to the aws services. There is a cloud watch.
+
+396
+00:39:05.210 --> 00:39:13.550
+Umesh Mahajan: Naina cloud would differentiate. This is different. So the one you are talking about the monitoring part
+
+397
+00:39:14.110 --> 00:39:18.519
+Umesh Mahajan: where you can, or even in admin So
+
+398
+00:39:19.070 --> 00:39:32.434
+Umesh Mahajan: 1st cloud, watch, cloud, trail or even in azure, we see the service where we log the information, right activity, log. Another thing what it does. It gives you
+
+399
+00:39:33.010 --> 00:39:33.880
+Umesh Mahajan: the
+
+400
+00:39:34.000 --> 00:39:46.050
+Umesh Mahajan: history. What is happening on my account, so that you will see in the monitoring or under the query, history talk to query, street path. Okay, you also get a copy history.
+
+401
+00:39:46.250 --> 00:39:48.650
+Umesh Mahajan: You also get a task history
+
+402
+00:39:48.880 --> 00:40:05.159
+Umesh Mahajan: like these are the copy history commands. You get a task history. Then you also get the session information as well. Right? And also in the monitoring. There are other things like governance
+
+403
+00:40:06.530 --> 00:40:07.440
+Umesh Mahajan: soup.
+
+404
+00:40:08.420 --> 00:40:09.660
+Umesh Mahajan: What other thing.
+
+405
+00:40:09.900 --> 00:40:13.379
+Venkatesh Allapure: Alert is a Aws SMS. So service emblem.
+
+406
+00:40:13.380 --> 00:40:15.559
+Umesh Mahajan: That is different. That is different.
+
+407
+00:40:17.190 --> 00:40:18.530
+Umesh Mahajan: That is different.
+
+408
+00:40:19.350 --> 00:40:25.800
+Umesh Mahajan: So that's a notification that's not alert. That's a notification type of service.
+
+409
+00:40:32.340 --> 00:40:33.185
+Umesh Mahajan: Okay?
+
+410
+00:40:34.180 --> 00:40:37.480
+Umesh Mahajan: what I want to show is
+
+411
+00:40:38.150 --> 00:40:42.403
+Umesh Mahajan: on the monitoring side. You can monitor the cost. Just say
+
+412
+00:40:42.950 --> 00:40:47.540
+Umesh Mahajan: cost monitoring a cost report, say, which forecast
+
+413
+00:40:48.000 --> 00:40:50.319
+Umesh Mahajan: that is shown here
+
+414
+00:40:51.550 --> 00:40:56.840
+Umesh Mahajan: in the monitoring section. It shows about the resource monitoring and other details.
+
+415
+00:40:58.140 --> 00:40:59.600
+Umesh Mahajan: And the task.
+
+416
+00:41:16.440 --> 00:41:22.470
+Umesh Mahajan: Okay, now, there is one more thing I want to cover is
+
+417
+00:41:35.060 --> 00:41:49.190
+Umesh Mahajan: okay, I I think, these are small parts, and probably hardly you will use it, because the reason is that there are other sophisticated services are available and for that purpose
+
+418
+00:41:49.838 --> 00:41:56.261
+Umesh Mahajan: otherwise, if there are the things other things as provided, why, you will use
+
+419
+00:41:57.190 --> 00:41:58.460
+Umesh Mahajan: this surveys.
+
+420
+00:42:10.200 --> 00:42:11.950
+Umesh Mahajan: any question here.
+
+421
+00:42:24.380 --> 00:42:25.365
+Umesh Mahajan: Okay?
+
+422
+00:42:30.560 --> 00:42:52.989
+Umesh Mahajan: you you might be confused between the name, alert, like Alert, is sending some email or other thing. No, that's not. It's performing some action on some condition. Base the on a data. It's not. I don't know why they put the name alert. It's not alert or notification, I would say.
+
+423
+00:42:53.120 --> 00:42:55.670
+Umesh Mahajan: it's not a notification part of you.
+
+424
+00:42:56.910 --> 00:42:57.760
+Umesh Mahajan: Okay.
+
+425
+00:42:57.980 --> 00:42:59.840
+Umesh Mahajan: Now suppose
+
+426
+00:43:00.210 --> 00:43:06.739
+Umesh Mahajan: Mujay is such a mirror data load of Hunikibat muji email, I took care. Casey, September.
+
+427
+00:43:11.990 --> 00:43:13.510
+Umesh Mahajan: which is no doubt.
+
+428
+00:43:13.510 --> 00:43:17.040
+Samir More: Not repetition and discussion. There is one email.
+
+429
+00:43:17.490 --> 00:43:18.260
+Umesh Mahajan: Yeah. Him.
+
+430
+00:43:19.270 --> 00:43:21.400
+Samir More: The email option. We can do that.
+
+431
+00:43:23.550 --> 00:43:25.350
+Umesh Mahajan: what is the second method.
+
+432
+00:43:29.230 --> 00:43:31.779
+Samir More: Second method through event.
+
+433
+00:43:32.490 --> 00:43:35.250
+Samir More: even from a group class solution.
+
+434
+00:43:36.614 --> 00:43:38.709
+Umesh Mahajan: In snowflake. Suppose? Yeah.
+
+435
+00:43:50.520 --> 00:43:53.060
+Umesh Mahajan: Smooth bar message. Sorry.
+
+436
+00:43:53.060 --> 00:43:54.200
+Sandeep Budruck: Myself? Are there.
+
+437
+00:43:54.800 --> 00:43:55.540
+Umesh Mahajan: Yeah.
+
+438
+00:43:55.840 --> 00:44:01.193
+Umesh Mahajan: So what we can do is in the notification section.
+
+439
+00:44:01.770 --> 00:44:08.550
+Umesh Mahajan: we can create a notification integration right? And submit a notification there.
+
+440
+00:44:08.620 --> 00:44:11.236
+Umesh Mahajan: that is the another, or
+
+441
+00:44:12.420 --> 00:44:18.401
+Umesh Mahajan: if you want to use a native methods, you can use
+
+442
+00:44:19.390 --> 00:44:24.679
+Umesh Mahajan: configure the smtp server, then create a notification and send that
+
+443
+00:44:25.649 --> 00:44:26.559
+Umesh Mahajan: notification.
+
+444
+00:44:28.550 --> 00:44:37.860
+Umesh Mahajan: That is also possible. There is also one way. I'm just trying to look at it in snow site and web interface
+
+445
+00:44:39.340 --> 00:44:40.140
+Umesh Mahajan: boom.
+
+446
+00:44:50.510 --> 00:45:11.444
+Umesh Mahajan: so you can have email notification from resource. Monitor. If you specify, this is bit for resource monitoring. When very finish in the background, you can get notified. This notification also you can perform. But this will be at a global level not at
+
+447
+00:45:11.950 --> 00:45:25.020
+Umesh Mahajan: individual level. But you can specify this and use store procedures, no park or something to send an email. On some event that that thing you can do
+
+448
+00:45:28.380 --> 00:45:33.670
+Umesh Mahajan: right where you can use the custom Smtp server and send an email.
+
+449
+00:45:43.800 --> 00:45:44.740
+Umesh Mahajan: Okay.
+
+450
+00:45:50.880 --> 00:45:51.900
+Umesh Mahajan: okay,
+
+451
+00:45:54.070 --> 00:46:00.009
+Umesh Mahajan: what else I want to cover is we have task. Another thing.
+
+452
+00:46:03.530 --> 00:46:12.996
+Umesh Mahajan: Okay, there is one more concept, the iceberg table. This is something where you externally. So you create your
+
+453
+00:46:15.020 --> 00:46:32.300
+Umesh Mahajan: external storage right where you have the files, you import those files into a table. So there is very good diagram for this in a documentation. Let me pull if I can bring that to you.
+
+454
+00:46:47.960 --> 00:46:48.640
+Umesh Mahajan: So
+
+455
+00:46:50.300 --> 00:46:57.410
+Umesh Mahajan: this iceberg tables uses the Apache iceberg, which is open source.
+
+456
+00:46:59.080 --> 00:47:12.210
+Umesh Mahajan: open source technology for specifying, for mainly it is used, for I see the schema evaluation or hidden partitioning and table. Snapshot type of thing.
+
+457
+00:47:13.580 --> 00:47:14.719
+Umesh Mahajan: it is
+
+458
+00:47:15.190 --> 00:47:17.310
+Umesh Mahajan: the diagram.
+
+459
+00:47:17.820 --> 00:47:18.520
+Umesh Mahajan: Yep.
+
+460
+00:47:44.210 --> 00:47:47.209
+Umesh Mahajan: So you have external volume.
+
+461
+00:47:47.680 --> 00:47:48.590
+Umesh Mahajan: Okay?
+
+462
+00:47:48.810 --> 00:47:51.579
+Umesh Mahajan: And you have a storage there.
+
+463
+00:47:51.600 --> 00:47:59.719
+Umesh Mahajan: So you have external cloud. The files are stored there you create external volume and create the table.
+
+464
+00:47:59.810 --> 00:48:11.050
+Umesh Mahajan: and then you have a iceberg catalog where metadata is stored. So you have files here. The metadata is here, and you create the ice book table, which is a type of
+
+465
+00:48:12.080 --> 00:48:14.240
+Umesh Mahajan: externals to
+
+466
+00:48:19.610 --> 00:48:29.089
+Umesh Mahajan: so table which you can access. What's the benefit of that is, you have your data on another
+
+467
+00:48:29.230 --> 00:48:31.539
+Umesh Mahajan: source. And you, any
+
+468
+00:48:31.620 --> 00:48:38.049
+Umesh Mahajan: schema changes acid transformation. You can access or perform the operations on that.
+
+469
+00:48:39.080 --> 00:48:39.800
+Umesh Mahajan: Okay?
+
+470
+00:48:40.390 --> 00:48:50.140
+Umesh Mahajan: And what it does. It combined the performance and queries, that you can perform on the snowflake table with an
+
+471
+00:48:50.330 --> 00:48:52.219
+Umesh Mahajan: as an external table.
+
+472
+00:48:52.490 --> 00:48:53.920
+Umesh Mahajan: External storage
+
+473
+00:48:57.379 --> 00:49:04.389
+Umesh Mahajan: anybody familiar with the Apache iceberg. Let me pull you overview about that.
+
+474
+00:49:04.590 --> 00:49:05.260
+Umesh Mahajan: Okay?
+
+475
+00:49:10.450 --> 00:49:17.668
+Umesh Mahajan: So from Apache, you will found lot more technologies and people have
+
+476
+00:49:19.150 --> 00:49:27.490
+Umesh Mahajan: use that adopted to their purpose, just like spark spark, was also Apache spark, and
+
+477
+00:49:29.140 --> 00:49:33.540
+Umesh Mahajan: Kafka Apache Kafka people have used Apache Hado.
+
+478
+00:49:33.650 --> 00:49:39.269
+Umesh Mahajan: They made it proprietary after that. Similarly, Apache ubi is also there.
+
+479
+00:49:42.970 --> 00:49:55.309
+Umesh Mahajan: which is also one type of table, a delta table. If you know Delta table, it's similar to that. It is also being used for transactional databases.
+
+480
+00:49:55.980 --> 00:50:05.560
+Umesh Mahajan: and Apache iceberg is. It's for mainly for analytics. Where you put the data and metadata.
+
+481
+00:50:07.130 --> 00:50:10.430
+Umesh Mahajan: Okay. I know this will be
+
+482
+00:50:11.230 --> 00:50:19.450
+Umesh Mahajan: apogee toda, heavy leg raw Apache, Hudi Apache birth kai Apache. But
+
+483
+00:50:21.140 --> 00:50:29.849
+Umesh Mahajan: if if this technology may be used or may not be depends on just a pastro. Have you heard about Pastro?
+
+484
+00:50:32.510 --> 00:50:33.160
+Vishal Gavali: No, sir.
+
+485
+00:50:33.830 --> 00:50:38.820
+Umesh Mahajan: Then, Apache, equal columnar data.
+
+486
+00:50:41.500 --> 00:50:52.519
+Umesh Mahajan: hbase. Have you heard about hbase? Non sequel? So these all are the basic thing, japalibaraya. They Apar. They release the
+
+487
+00:50:53.130 --> 00:51:11.980
+Umesh Mahajan: community version. And then people, or they were using it. And they just want the world to know. Yes, your technology exist here. That's why, they just introduce. But they after that they commercialize this. So all these things, you see, Apache, Hoodie, Apache iceberg, Apache, Kaka
+
+488
+00:51:12.341 --> 00:51:26.089
+Umesh Mahajan: Apache air flow. You see all these things which are open so later they commercialize it. Why, they make it open so so people know it, use it. And then, on top of that, they sell it.
+
+489
+00:51:30.260 --> 00:51:48.450
+Umesh Mahajan: So basically, it's using the analytic. It's a high performing analytical table which mainly use can be also used for acid transfer missions for sequel, queries just like spark. And you can see this
+
+490
+00:51:48.630 --> 00:51:57.790
+Umesh Mahajan: Trino Flink Flink is also a streaming service like a Kafka pistro. How you how you might might. You have heard about Hayou. Right.
+
+491
+00:52:00.370 --> 00:52:01.710
+Umesh Mahajan: Imbala.
+
+492
+00:52:02.410 --> 00:52:07.150
+Umesh Mahajan: Okay, I will not talk much otherwise. Abulgates.
+
+493
+00:52:08.610 --> 00:52:09.320
+Vishal Gavali: Hello, sir!
+
+494
+00:52:09.590 --> 00:52:10.260
+Umesh Mahajan: Yep.
+
+495
+00:52:10.590 --> 00:52:12.900
+Vishal Gavali: Expert cable, sir. Support car. There is no picking.
+
+496
+00:52:13.480 --> 00:52:15.380
+Umesh Mahajan: Snowflake may support. Cut that.
+
+497
+00:52:16.110 --> 00:52:16.840
+Vishal Gavali: Be safe!
+
+498
+00:52:17.100 --> 00:52:17.490
+Umesh Mahajan: Yeah.
+
+499
+00:52:17.490 --> 00:52:18.016
+Venkatesh Allapure: What else?
+
+500
+00:52:18.280 --> 00:52:19.450
+Umesh Mahajan: As are exclusive.
+
+501
+00:52:19.490 --> 00:52:21.529
+Venkatesh Allapure: The output. Tabling stuff looks.
+
+502
+00:52:22.590 --> 00:52:23.950
+Umesh Mahajan: Sorry. Can you repeat?
+
+503
+00:52:25.570 --> 00:52:29.210
+Venkatesh Allapure: Are the main benefits using the iceberg table in snowflakes.
+
+504
+00:52:29.480 --> 00:52:33.649
+Umesh Mahajan: So main thing is you will have the interact
+
+505
+00:52:34.150 --> 00:52:43.730
+Umesh Mahajan: connectivity with these ice tables which are out external tables which are high performing tables which you can use.
+
+506
+00:52:43.820 --> 00:53:01.859
+Umesh Mahajan: and the format that this support or the features that iceberg stable support is acid transactions, meaning e for automaticity, consistency, isolation and durability. What it means is
+
+507
+00:53:02.090 --> 00:53:03.950
+Umesh Mahajan: when you update it.
+
+508
+00:53:04.170 --> 00:53:10.769
+Umesh Mahajan: it is consistent. Meaning as a Yoga key update. Nguya.
+
+509
+00:53:10.840 --> 00:53:13.759
+Umesh Mahajan: yeah, if you time, yeah, it's a consistent.
+
+510
+00:53:13.840 --> 00:53:35.640
+Umesh Mahajan: It's I in isolation does look access, correct or 1,000 look access correct it will maintain its own copies, and then actual data get updated. It will maintain the cache, so all that concurrency will also be maintained. When the any updates or other thing happen.
+
+511
+00:53:35.640 --> 00:53:47.166
+Umesh Mahajan: another benefit is about the schema evaluation. If the table schema changes it will track it, and it will easily evolve
+
+512
+00:53:49.090 --> 00:53:54.469
+Umesh Mahajan: that are the major benefits of I square tables.
+
+513
+00:53:54.530 --> 00:54:02.009
+Umesh Mahajan: If you use in the snowflake. It's not the snowflake feature. It's the iceberg feature, but you can use it
+
+514
+00:54:02.060 --> 00:54:04.740
+Umesh Mahajan: somewhat similar to spar.
+
+515
+00:54:05.060 --> 00:54:14.379
+Umesh Mahajan: You can use a spark and use the features of the parks. Similarly, you can use the iceberg table and use the features of iceberg in snowflake.
+
+516
+00:54:16.420 --> 00:54:22.158
+Umesh Mahajan: So what it does it combines the high performance, and query feature
+
+517
+00:54:23.120 --> 00:54:25.769
+Umesh Mahajan: These are the high performing format
+
+518
+00:54:26.230 --> 00:54:29.280
+Umesh Mahajan: which you can use in the snowflake
+
+519
+00:54:35.010 --> 00:54:35.870
+Umesh Mahajan: headache.
+
+520
+00:54:36.730 --> 00:54:39.790
+Venkatesh Allapure: Measure it mainly related to transactional data.
+
+521
+00:54:40.390 --> 00:54:43.340
+Umesh Mahajan: Yes, yes, exactly acid transformation.
+
+522
+00:54:43.610 --> 00:54:44.970
+Venkatesh Allapure: Emergency data
+
+523
+00:54:45.420 --> 00:54:51.190
+Venkatesh Allapure: volume is very nice. So external stage or external table. With that we can.
+
+524
+00:54:51.822 --> 00:54:55.260
+Venkatesh Allapure: when we deal with as it increases our performance.
+
+525
+00:54:56.120 --> 00:55:12.240
+Umesh Mahajan: Correct exactly, because Snowflake is a data warehouse or technology data warehouse technology. Picanther, Tito is come with care. It's not a transactional database may oracle J. Cells could use kernels at the unique, etcetera, because
+
+526
+00:55:12.350 --> 00:55:16.370
+Umesh Mahajan: it supports the asset. You can do the update. You can do the delete.
+
+527
+00:55:18.470 --> 00:55:20.499
+Umesh Mahajan: but it's not a high performing
+
+528
+00:55:20.520 --> 00:55:26.220
+Umesh Mahajan: cuny, because it does not delete the record. It creates a new micro partition.
+
+529
+00:55:26.520 --> 00:55:27.440
+Umesh Mahajan: Correct
+
+530
+00:55:27.940 --> 00:55:32.310
+Umesh Mahajan: up, up it come, Kurokabi, delete query run, Karke, they go. Snowflake may.
+
+531
+00:55:32.340 --> 00:55:34.380
+Umesh Mahajan: and see how much time it takes.
+
+532
+00:55:35.110 --> 00:55:35.670
+Umesh Mahajan: So
+
+533
+00:55:35.690 --> 00:55:42.770
+Umesh Mahajan: among all the queries, delete is most expensive operation.
+
+534
+00:55:43.010 --> 00:55:47.120
+Umesh Mahajan: deleting the record, not dropping the table, deleting the record
+
+535
+00:55:48.150 --> 00:55:52.459
+Umesh Mahajan: right because it scan the record and then remove the record.
+
+536
+00:55:52.470 --> 00:55:59.060
+Umesh Mahajan: So agar as Aik table pay hajj look operation, perform correct. So
+
+537
+00:55:59.130 --> 00:56:01.740
+Umesh Mahajan: opera performance will be degraded.
+
+538
+00:56:01.840 --> 00:56:07.619
+Umesh Mahajan: So Snowflake is not designed for transactional data transactions. It can perform
+
+539
+00:56:07.760 --> 00:56:14.440
+Umesh Mahajan: the transaction. But it is not designed at a scalable level. And that's why this limitation
+
+540
+00:56:14.490 --> 00:56:24.540
+Umesh Mahajan: can be. If made a use case have emerged. A transactional data update can have a large amount pay. Then you can use this iceberg table feature.
+
+541
+00:56:26.110 --> 00:56:27.010
+Umesh Mahajan: Okay?
+
+542
+00:56:32.850 --> 00:56:40.567
+Umesh Mahajan: Again. I doubt he, Octa project may you will use iceberg table or not, because,
+
+543
+00:56:41.360 --> 00:56:45.570
+Umesh Mahajan: if you're using for data warehouse, you will not use this feature.
+
+544
+00:56:48.330 --> 00:56:52.960
+Venkatesh Allapure: And there is one more cables that is dynamic table, similar to streams.
+
+545
+00:56:53.400 --> 00:56:53.775
+Umesh Mahajan: Yeah.
+
+546
+00:56:54.510 --> 00:57:03.756
+Umesh Mahajan: So where the data will come dynamically, and you will fetch the data as as is
+
+547
+00:57:04.520 --> 00:57:06.999
+Umesh Mahajan: It's, I think. Let me go back to there.
+
+548
+00:57:16.460 --> 00:57:20.649
+Venkatesh Allapure: In dynamic. There were also the data relationship with Victorina.
+
+549
+00:57:27.360 --> 00:57:30.580
+Umesh Mahajan: So we were looking at this. And
+
+550
+00:57:30.810 --> 00:57:39.314
+Umesh Mahajan: what is covered. Yeah, this is the dynamic table, and get these other 2 things appending. So right now.
+
+551
+00:57:40.120 --> 00:57:44.060
+Umesh Mahajan: you you can have let me open a new worksheet.
+
+552
+00:58:02.520 --> 00:58:11.359
+Umesh Mahajan: So I let's say, let's take one example where basically, this dynamic table being used where
+
+553
+00:58:11.650 --> 00:58:14.200
+Umesh Mahajan: you want to populate the data.
+
+554
+00:58:14.788 --> 00:58:18.140
+Umesh Mahajan: In a cost effective and automated way.
+
+555
+00:58:18.270 --> 00:58:25.380
+Umesh Mahajan: So let's say, this is my target language. Let me get the warehouse and language.
+
+556
+00:58:32.930 --> 00:58:35.970
+Umesh Mahajan: Okay, I'll use the sequel
+
+557
+00:58:36.820 --> 00:58:38.930
+Umesh Mahajan: target language.
+
+558
+00:58:40.100 --> 00:58:43.550
+Umesh Mahajan: Let me see, what are the available options? Are there?
+
+559
+00:58:50.400 --> 00:58:55.536
+Umesh Mahajan: So there is one in documentation. There is one more
+
+560
+00:58:56.070 --> 00:59:00.459
+Umesh Mahajan: diagram that is provided. Let me open that for you.
+
+561
+00:59:05.100 --> 00:59:10.109
+Umesh Mahajan: So you have multiple tables. This is the one use case we are looking at.
+
+562
+00:59:13.820 --> 00:59:22.601
+Umesh Mahajan: So you have a different tables. Okay? And from 3 tables you want to create
+
+563
+00:59:24.570 --> 00:59:33.740
+Umesh Mahajan: very result and load that result into the table. The result coming from day's table A and B, and
+
+564
+00:59:34.235 --> 00:59:38.034
+Umesh Mahajan: these are coming from the table B and
+
+565
+00:59:39.210 --> 00:59:46.720
+Umesh Mahajan: a dynamic table also. So it populates this table and dynamic B table is getting populated
+
+566
+00:59:47.343 --> 00:59:52.007
+Umesh Mahajan: from table B and dynamic table C
+
+567
+00:59:52.640 --> 01:00:02.090
+Umesh Mahajan: which is also one more dynamic table. These are the best tables, and these are the dynamic tables from where this being populated
+
+568
+01:00:02.100 --> 01:00:06.640
+Umesh Mahajan: so you can create that table. Define the target table.
+
+569
+01:00:06.660 --> 01:00:07.710
+Umesh Mahajan: Oh.
+
+570
+01:00:08.130 --> 01:00:11.774
+Umesh Mahajan: and when to use this dynamic table is.
+
+571
+01:00:12.770 --> 01:00:28.510
+Umesh Mahajan: You don't want to write a code to track data dependencies. If there are certain de data dependencies, logics are there. You want to write that. Or you want to add auto. Refresh this things
+
+572
+01:00:28.660 --> 01:00:30.740
+Umesh Mahajan: on some value changes
+
+573
+01:00:31.280 --> 01:00:32.726
+Umesh Mahajan: and when
+
+574
+01:00:33.540 --> 01:00:45.390
+Umesh Mahajan: you don't want to have the complexity of streams and multiple tasks. Again, the task may, if condition theyka, if this is greater than 200, then populated
+
+575
+01:00:45.570 --> 01:00:53.820
+Umesh Mahajan: right? So instead of that, you can create a dynamic table based on the condition it will automatically populate the table.
+
+576
+01:00:54.640 --> 01:01:00.400
+Umesh Mahajan: So now you will ask, what is the difference between the view
+
+577
+01:01:00.490 --> 01:01:09.269
+Umesh Mahajan: dynamic table? Mainly, basically view and dynamic table view may or even
+
+578
+01:01:09.780 --> 01:01:24.940
+Umesh Mahajan: can we achieve the similar functionality that we do in dynamic table with the view or with the store procedures or with the functions, or with the Snow Park external interfaces. Right?
+
+579
+01:01:25.480 --> 01:01:30.220
+Umesh Mahajan: Sdk, basically. So the answer is, yes, you can do that.
+
+580
+01:01:30.480 --> 01:01:40.610
+Umesh Mahajan: Then you will ask, Sir, why, then this feature is provided, if there is already a way to do that, why this is provided. So
+
+581
+01:01:40.640 --> 01:01:44.320
+Umesh Mahajan: these things are provided. The reason is that
+
+582
+01:01:44.410 --> 01:01:52.160
+Umesh Mahajan: Snow Park mean was not there in the beginning, so they need to provide some feature based on the customers demand
+
+583
+01:01:52.702 --> 01:02:03.510
+Umesh Mahajan: so they provided this is being this being used. Yes, some part. It is being used people use this to populate some data. But
+
+584
+01:02:04.150 --> 01:02:20.012
+Umesh Mahajan: the if you don't want to switch to multiple muji pathia. Say, A, do you table populate? Connect? Then I will use this technology. But Muji put a pipeline he built, can I integrate? Can ICIC, d. One, and I. Then I need to
+
+585
+01:02:20.560 --> 01:02:21.809
+Umesh Mahajan: that it will.
+
+586
+01:02:22.060 --> 01:02:36.730
+Umesh Mahajan: The scheduler or enterprise orchestration tool. I have multiple tables to populate. Then, as a solution, architect, I will design for scalable things and independent on the snowflake, or because
+
+587
+01:02:37.090 --> 01:02:56.479
+Umesh Mahajan: snow it, it's more specific. It will deal with the snowflake only, but I want to go beyond that and use it. So in that case I will not consider. The dynamic tables. I'll use the other methods which are available.
+
+588
+01:03:02.050 --> 01:03:08.633
+Umesh Mahajan: Okay, now, one more thing you can ask is stream, John Nadeka.
+
+589
+01:03:09.470 --> 01:03:11.689
+Umesh Mahajan: can we use stream in
+
+590
+01:03:12.447 --> 01:03:16.212
+Umesh Mahajan: in conjunction with the dynamic table.
+
+591
+01:03:17.280 --> 01:03:23.669
+Umesh Mahajan: when you use the stream based on dynamic table. It works
+
+592
+01:03:24.420 --> 01:03:26.580
+Umesh Mahajan: just like you do in any
+
+593
+01:03:27.052 --> 01:03:32.490
+Umesh Mahajan: any table format or any normal stream. So it works on the dynamic table also.
+
+594
+01:03:32.580 --> 01:03:34.030
+Umesh Mahajan: So if you remember.
+
+595
+01:03:34.400 --> 01:03:42.694
+Umesh Mahajan: we created the stream on a table. So can we create a stream on a dynamic table. So you can use the stream
+
+596
+01:03:43.320 --> 01:03:45.530
+Umesh Mahajan: on a dynamic table as well.
+
+597
+01:03:56.050 --> 01:03:56.810
+Umesh Mahajan: Okay.
+
+598
+01:04:01.135 --> 01:04:04.890
+Samir More: Main difference between materializes, and then
+
+599
+01:04:05.520 --> 01:04:06.570
+Samir More: yep.
+
+600
+01:04:06.570 --> 01:04:13.489
+Umesh Mahajan: It is important. Different is, if you see is the conditions that we can write.
+
+601
+01:04:13.510 --> 01:04:14.880
+Umesh Mahajan: So.
+
+602
+01:04:15.000 --> 01:04:22.509
+Umesh Mahajan: for example, in virtualized view, or any view that we use so SQL, query, only it's not a conditional
+
+603
+01:04:23.940 --> 01:04:40.640
+Umesh Mahajan: correct so conditional meaning. You can write the where condition, but any changes, any auto refresh went to auto refresh that sort of conditions. We cannot write in dynamic table. Sorry in a matterless view or review.
+
+604
+01:04:40.650 --> 01:04:47.329
+Umesh Mahajan: which we can do ha! Or control in dynamic tables.
+
+605
+01:04:49.360 --> 01:04:54.144
+Venkatesh Allapure: And it's the best people are in a Torino.
+
+606
+01:04:54.580 --> 01:04:55.030
+Umesh Mahajan: No like.
+
+607
+01:04:55.030 --> 01:04:56.030
+Venkatesh Allapure: Snowflake, weekend.
+
+608
+01:04:56.030 --> 01:04:58.989
+Umesh Mahajan: Yeah, yeah, right now, you see, this snowflake.
+
+609
+01:05:03.090 --> 01:05:06.359
+Venkatesh Allapure: Means that there, there is 2 terms. Data show.
+
+610
+01:05:08.410 --> 01:05:15.890
+Umesh Mahajan: Yeah. But the second data, which is query or the output, the conditional output, that is.
+
+611
+01:05:15.970 --> 01:05:19.950
+Umesh Mahajan: it's not the same data. It's a transform data, basically.
+
+612
+01:05:25.550 --> 01:05:30.679
+Venkatesh Allapure: Yes, it means from a multiple levels apply.
+
+613
+01:05:30.680 --> 01:05:31.450
+Umesh Mahajan: And Hun.
+
+614
+01:05:31.670 --> 01:05:35.855
+Venkatesh Allapure: Rejoin, and we can store in a dynamic table.
+
+615
+01:05:36.320 --> 01:05:38.779
+Umesh Mahajan: But along with that, some conditions.
+
+616
+01:05:38.960 --> 01:05:39.590
+Venkatesh Allapure: Yes, sir.
+
+617
+01:05:40.876 --> 01:05:54.750
+Umesh Mahajan: it will. The 1st one is dependency that you're talking. So you if you are getting the data from multiple tables. Yes, it's the dependency, but you can also have some conditions
+
+618
+01:05:54.900 --> 01:05:56.469
+Umesh Mahajan: to refresh that.
+
+619
+01:06:00.763 --> 01:06:06.419
+Samir More: Can I say that if suppose these tables are changing like? There are frequently
+
+620
+01:06:06.500 --> 01:06:14.849
+Samir More: updates on the table. In that case we can use dynamic table, because in the case of you, multi view is costly.
+
+621
+01:06:15.020 --> 01:06:18.080
+Samir More: Suppose the vegetable changes require.
+
+622
+01:06:18.340 --> 01:06:25.599
+Umesh Mahajan: Yeah, that is true. Because why? Costly? Because it refresh the data every time.
+
+623
+01:06:26.310 --> 01:06:27.709
+Samir More: Metadata will be uploaded.
+
+624
+01:06:28.140 --> 01:06:29.730
+Umesh Mahajan: Yeah, it's a new query.
+
+625
+01:06:40.350 --> 01:06:53.385
+Umesh Mahajan: I think there was also good comparison. So these things you will find in the documentation. Now, why, I'm not taking in these things in a detail like
+
+626
+01:06:55.450 --> 01:07:14.919
+Umesh Mahajan: iceberg tables or alerts, or these things. Why, we are not taking in a detail. The reason is that you will hardly use why you will hardly use this, because there are other ways available. Other more sophisticated ways are available rather than using this.
+
+627
+01:07:15.160 --> 01:07:22.001
+Umesh Mahajan: So for that purpose is Iska. Ssm Joe? So when you get
+
+628
+01:07:22.560 --> 01:07:26.600
+Umesh Mahajan: iphone, you get a sticker. What's the use of those stickers?
+
+629
+01:07:30.170 --> 01:07:32.009
+Umesh Mahajan: We don't use it right.
+
+630
+01:07:32.920 --> 01:07:56.120
+Umesh Mahajan: we can use it, but we don't use it. So similar to this. This features was where provided when there were limitation. Now Abola gets that a Ss wants a feature. Joe Snowflake provide, Nick, that I fill up. So what I feel data catalog, or is some feature that snowflake does not have.
+
+631
+01:07:58.160 --> 01:07:59.670
+Umesh Mahajan: so what it means?
+
+632
+01:07:59.810 --> 01:08:05.589
+Umesh Mahajan: You have a data where you have a metadata, but how do you
+
+633
+01:08:06.340 --> 01:08:12.125
+Umesh Mahajan: provide the access to it? So that is not so. Data book, or,
+
+634
+01:08:12.770 --> 01:08:14.828
+Umesh Mahajan: there is one more tool
+
+635
+01:08:16.300 --> 01:08:17.750
+Umesh Mahajan: data catalog
+
+636
+01:08:17.920 --> 01:08:20.359
+Umesh Mahajan: the applications.
+
+637
+01:08:21.109 --> 01:08:25.069
+Umesh Mahajan: Similar. So Snowflake does not have this feature yet.
+
+638
+01:08:39.279 --> 01:08:42.249
+Umesh Mahajan: Yeah, calibra caliber is one more
+
+639
+01:08:44.680 --> 01:08:48.530
+Umesh Mahajan: system that being used for data catalog
+
+640
+01:08:49.027 --> 01:08:53.050
+Umesh Mahajan: so Snowflake does not have this type of feature.
+
+641
+01:08:53.090 --> 01:08:58.169
+Umesh Mahajan: Does any other team has this feature. Yes.
+
+642
+01:08:58.380 --> 01:09:02.809
+Umesh Mahajan: if you know, aws, aws, has a data catalog
+
+643
+01:09:02.859 --> 01:09:04.750
+Umesh Mahajan: glue data catalog
+
+644
+01:09:05.347 --> 01:09:11.820
+Umesh Mahajan: where you store your metadata and Update metadata or detect the metadata information
+
+645
+01:09:12.100 --> 01:09:12.930
+Umesh Mahajan: soup.
+
+646
+01:09:13.189 --> 01:09:16.170
+Umesh Mahajan: Snowflake does not have this sort of feature.
+
+647
+01:09:16.550 --> 01:09:20.179
+Umesh Mahajan: so probably they will come up in future with this.
+
+648
+01:09:25.520 --> 01:09:32.060
+Umesh Mahajan: Okay. Snowflake also has a and ML features. But those are in preview or initial stages.
+
+649
+01:09:32.229 --> 01:09:36.129
+Umesh Mahajan: Why, someone will use Snowflake for
+
+650
+01:09:36.630 --> 01:09:38.290
+Umesh Mahajan: building the models
+
+651
+01:09:38.910 --> 01:09:52.020
+Umesh Mahajan: correct. They just start, introduce it. Probably in future they will enhance it and then build some pipeline data pipeline to do automatically detect data anomalies.
+
+652
+01:09:52.029 --> 01:10:07.059
+Umesh Mahajan: Joseph, nee pune lika address. May isn't a pune alica kissing a color spelling lica so it can auto detect and correct it. That sort of things will come up in future. But for right now they just have basic foundations. Things.
+
+653
+01:10:12.770 --> 01:10:13.640
+Umesh Mahajan: Okay.
+
+654
+01:10:14.300 --> 01:10:16.710
+Venkatesh Allapure: Mainly, we use other data engineers.
+
+655
+01:10:17.370 --> 01:10:18.430
+Venkatesh Allapure: data storage. But.
+
+656
+01:10:20.310 --> 01:10:24.399
+Umesh Mahajan: Sorry your voice is again not clear.
+
+657
+01:10:28.260 --> 01:10:32.730
+Venkatesh Allapure: We can use for only storage purpose as a data engineer. So we
+
+658
+01:10:32.810 --> 01:10:36.619
+Venkatesh Allapure: on a snowflake, or only dump a gold layer.
+
+659
+01:10:38.740 --> 01:10:41.639
+Umesh Mahajan: Snow. Why we use Snowflake. Is that your question?
+
+660
+01:10:41.960 --> 01:10:45.040
+Venkatesh Allapure: Yes, sir, I think it's only for storage purpose.
+
+661
+01:10:45.500 --> 01:10:48.409
+Umesh Mahajan: No storage is the one but
+
+662
+01:10:49.190 --> 01:10:52.150
+Umesh Mahajan: Cahape used main with a snowflake cup.
+
+663
+01:10:53.530 --> 01:10:58.260
+Umesh Mahajan: Snowflake, Asana Veri, Kernik Elliot fetcher nickel year right?
+
+664
+01:10:59.280 --> 01:11:03.089
+Umesh Mahajan: So snowflake is used as a data warehouse.
+
+665
+01:11:03.140 --> 01:11:04.510
+Umesh Mahajan: What it means.
+
+666
+01:11:04.640 --> 01:11:08.619
+Umesh Mahajan: What it means is snowflake is a storage.
+
+667
+01:11:08.650 --> 01:11:12.910
+Umesh Mahajan: and on top of that compute to access that data.
+
+668
+01:11:12.960 --> 01:11:27.119
+Umesh Mahajan: who can, who will be more benefit from this data. Access is mostly the business user reporting tools. Because it can fetch a large amount of data efficiently
+
+669
+01:11:27.370 --> 01:11:29.590
+Umesh Mahajan: query that data efficiently.
+
+670
+01:11:29.640 --> 01:11:31.690
+Umesh Mahajan: That's where it big news.
+
+671
+01:11:32.040 --> 01:11:44.280
+Umesh Mahajan: Now, can snowflake bees use to load the data or etl tool as Etl engine to some extent it can use be used as a data engine.
+
+672
+01:11:46.650 --> 01:11:48.749
+Umesh Mahajan: right? Other snowflake
+
+673
+01:11:48.940 --> 01:11:53.829
+Umesh Mahajan: data mirror s. 3 may, after azure blob storage may.
+
+674
+01:11:54.330 --> 01:12:14.230
+Umesh Mahajan: If the data is there, why, to load the data again in one more layer, how to? Why, to add one more complexity, why cannot we do the processing in Spice Park in azure. Only data breaks May, and why we cannot load it. The reason is that
+
+675
+01:12:14.240 --> 01:12:23.530
+Umesh Mahajan: Snowflake is very good at querying the data, analyzing the data. It may not be a good at the building the data pipeline.
+
+676
+01:12:24.300 --> 01:12:26.929
+Umesh Mahajan: but it's good at querying the data.
+
+677
+01:12:27.930 --> 01:12:37.650
+Umesh Mahajan: and no infrastructure required. It's a server less. So you you don't have to provision problem, Katha, if you use a data breaks.
+
+678
+01:12:38.300 --> 01:12:47.719
+Umesh Mahajan: Okay as your data warehouse. And on top of that you build a reports or analyst are wearing that problem. Kauga
+
+679
+01:12:48.160 --> 01:12:53.210
+Umesh Mahajan: problem. Yoga keyboards are a low, would it? Access current game and
+
+680
+01:12:53.300 --> 01:12:56.350
+Umesh Mahajan: data breaks? Will not be that much scalable.
+
+681
+01:12:57.030 --> 01:12:57.850
+Umesh Mahajan: did I?
+
+682
+01:12:58.150 --> 01:13:07.769
+Umesh Mahajan: And it will have some issues. It will not handle that much connections, web connections, and other detail. But snowflake is good at it.
+
+683
+01:13:07.850 --> 01:13:09.500
+Umesh Mahajan: Other thing is
+
+684
+01:13:10.460 --> 01:13:24.219
+Umesh Mahajan: in data breaks it will be difficult to do 0 copy, clone, share, and then, you, you will have those many difficulties. But Snowflake has those features easily available
+
+685
+01:13:24.240 --> 01:13:29.290
+Umesh Mahajan: Agara copy. Can I? Data breaks or quick kissimmee data through data
+
+686
+01:13:29.510 --> 01:13:30.879
+Umesh Mahajan: cost Bodega
+
+687
+01:13:31.010 --> 01:13:38.099
+Umesh Mahajan: versus in Snowflake? It's not that. So Snowflake is mainly more user friendly cost effective way.
+
+688
+01:13:38.170 --> 01:13:40.380
+Umesh Mahajan: And that's why people use snowflake.
+
+689
+01:13:41.010 --> 01:13:44.020
+Umesh Mahajan: And it's very popular, because it's easy to use
+
+690
+01:13:44.280 --> 01:13:47.609
+Umesh Mahajan: for business analyst because they just need to query it.
+
+691
+01:13:51.100 --> 01:13:52.559
+Venkatesh Allapure: Yes, sir, I've got
+
+692
+01:13:52.620 --> 01:13:57.960
+Venkatesh Allapure: in a data. Scientist. Perspective is a good for analyzing the data. Very first, st
+
+693
+01:13:58.870 --> 01:14:04.569
+Venkatesh Allapure: I'm I'm seeing our data as a data engineer. Perspective.
+
+694
+01:14:05.405 --> 01:14:05.850
+Umesh Mahajan: Mute.
+
+695
+01:14:05.850 --> 01:14:08.780
+Venkatesh Allapure: Only data loading purpose. Mr.
+
+696
+01:14:09.010 --> 01:14:09.990
+Umesh Mahajan: Executing it.
+
+697
+01:14:09.990 --> 01:14:11.780
+Venkatesh Allapure: Only data we can
+
+698
+01:14:11.820 --> 01:14:14.125
+Venkatesh Allapure: dump in a snowplay and there.
+
+699
+01:14:14.940 --> 01:14:18.319
+Venkatesh Allapure: or analyze the data and take insight from them.
+
+700
+01:14:18.660 --> 01:14:19.400
+Umesh Mahajan: Yes.
+
+701
+01:14:23.140 --> 01:14:29.335
+Venkatesh Allapure: Yeah, miss, we are as a data engineer. We only use public for demo data in zoom.
+
+702
+01:14:30.030 --> 01:14:30.630
+Umesh Mahajan: Yep.
+
+703
+01:14:36.250 --> 01:14:37.000
+Venkatesh Allapure: And use it.
+
+704
+01:14:37.700 --> 01:14:45.889
+Umesh Mahajan: And in that this is for mainly the warehouse. Also data warehouse use any data warehouse you use for same purpose.
+
+705
+01:14:46.070 --> 01:14:57.719
+Umesh Mahajan: You basically creating data for someone else. You will use most of the Etl tools to load the data. Sometimes you will do processing in Snowflake sometime you'll do outside of Snowflake.
+
+706
+01:14:59.390 --> 01:15:05.529
+Umesh Mahajan: But that's that's a purpose. Maybe sometimes the projects are migration projects
+
+707
+01:15:05.630 --> 01:15:14.729
+Umesh Mahajan: so bullying. And Mujay Miranda native data warehouse. Say, I want to migrate it to Snowflake, so that migration work will be there.
+
+708
+01:15:15.820 --> 01:15:19.539
+Umesh Mahajan: Sometimes it will lift and ship migration. Same table
+
+709
+01:15:19.630 --> 01:15:28.660
+Umesh Mahajan: copy kirk with the dallo. Sometimes it will be a different type of migration. Where transform migration diagon.
+
+710
+01:15:29.040 --> 01:15:29.860
+Venkatesh Allapure: Yeah, I, think.
+
+711
+01:15:32.340 --> 01:15:32.880
+Venkatesh Allapure: okay.
+
+712
+01:15:33.354 --> 01:15:37.620
+Umesh Mahajan: You don't have. Okay. I'm just trying to see.
+
+713
+01:15:41.040 --> 01:15:54.110
+Venkatesh Allapure: Can you think, sir? All these things as a detention? Which things you do means yeah, extra data and transport. And then that things are we can do in public in future.
+
+714
+01:15:57.190 --> 01:16:04.619
+Umesh Mahajan: As I did. Can you repeat your question? Sorry. I'm not sure I'm not able to hear you clearly. What is your question?
+
+715
+01:16:05.956 --> 01:16:08.169
+Venkatesh Allapure: Can you think that in a future.
+
+716
+01:16:09.760 --> 01:16:12.110
+Venkatesh Allapure: Think the data in here
+
+717
+01:16:12.610 --> 01:16:19.600
+Venkatesh Allapure: data engineer doom means it accepts data and transform it and dump it to a analysis analyst
+
+718
+01:16:19.730 --> 01:16:21.020
+Venkatesh Allapure: on that meeting
+
+719
+01:16:21.070 --> 01:16:24.435
+Venkatesh Allapure: credit engine can we do in Fujitine snow, flexion.
+
+720
+01:16:26.180 --> 01:16:36.809
+Umesh Mahajan: The Etl part. Can we do it in Snowflake now? Also, few people do it like they pick the file. They do some
+
+721
+01:16:36.850 --> 01:16:40.360
+Umesh Mahajan: entire data. Lake is on the snowflake also.
+
+722
+01:16:40.510 --> 01:16:49.769
+Umesh Mahajan: where it is beneficial, where you the semi structure data. So you just write a queries to read that semi structure data and load flatten
+
+723
+01:16:50.320 --> 01:16:57.709
+Umesh Mahajan: and load it. Now, also, few people like my previous project was using it as a
+
+724
+01:16:58.744 --> 01:17:05.790
+Umesh Mahajan: data warehouse. But it was also doing the some Etl jobs in a sequel. Snow sequel.
+
+725
+01:17:14.250 --> 01:17:15.950
+Umesh Mahajan: They can do that. Yep.
+
+726
+01:17:19.180 --> 01:17:23.653
+Umesh Mahajan: okay. I have given the access to everyone to
+
+727
+01:17:24.560 --> 01:17:25.880
+Umesh Mahajan: quick question.
+
+728
+01:17:26.100 --> 01:17:31.980
+Umesh Mahajan: and just a minute, if I have a meeting today, it's around 8 am.
+
+729
+01:17:35.620 --> 01:17:39.670
+Umesh Mahajan: Oh, no, I don't have a meeting today. Yeah. Ask the questions now.
+
+730
+01:17:46.440 --> 01:17:47.470
+Rushi sonawane: Hannah, sir.
+
+731
+01:17:47.990 --> 01:17:48.820
+Rushi sonawane: Yep.
+
+732
+01:17:49.260 --> 01:17:52.219
+Rushi sonawane: sir, when we are creating the streaming data
+
+733
+01:17:52.260 --> 01:17:56.870
+Rushi sonawane: at that time, when we are inserting the duplicate data or same data
+
+734
+01:17:57.342 --> 01:18:00.960
+Rushi sonawane: it will not accept that data. Why, it's happened.
+
+735
+01:18:03.590 --> 01:18:06.430
+Umesh Mahajan: So I'm writing your question. What is your question
+
+736
+01:18:07.180 --> 01:18:09.209
+Umesh Mahajan: when you are writing.
+
+737
+01:18:09.760 --> 01:18:13.980
+Rushi sonawane: When we are creating a stream means we are creating one stream object.
+
+738
+01:18:14.060 --> 01:18:17.240
+Rushi sonawane: After that we are inserting some data.
+
+739
+01:18:18.070 --> 01:18:22.200
+Rushi sonawane: Those data are already present in that our sole source table.
+
+740
+01:18:23.500 --> 01:18:32.209
+Rushi sonawane: We have to update same reports in the target table. But we can't update that. It's due to error. Because, like, a duplicate data.
+
+741
+01:18:33.980 --> 01:18:48.829
+Umesh Mahajan: No, no, so let me understand. So you have a table on that table. You created the stream on. Yeah. So then you have you are trying to update the record in the base table.
+
+742
+01:18:49.970 --> 01:18:52.079
+Rushi sonawane: Yes, yes, so.
+
+743
+01:18:52.080 --> 01:18:56.690
+Umesh Mahajan: It will log that information to the stream that this record is updated.
+
+744
+01:18:57.030 --> 01:18:57.840
+Rushi sonawane: Yes.
+
+745
+01:18:58.940 --> 01:19:01.220
+Umesh Mahajan: So what's your question right now?
+
+746
+01:19:02.243 --> 01:19:02.776
+Rushi sonawane: Stream.
+
+747
+01:19:04.010 --> 01:19:05.689
+Rushi sonawane: Whatever we are.
+
+748
+01:19:07.310 --> 01:19:10.640
+Rushi sonawane: we have to insert the data in. Firstly, we are
+
+749
+01:19:11.500 --> 01:19:12.500
+Rushi sonawane: certain.
+
+750
+01:19:13.150 --> 01:19:17.889
+Rushi sonawane: First, st we are creating our source table. After that, on that source over, we are creating our stream
+
+751
+01:19:18.842 --> 01:19:27.040
+Rushi sonawane: whatever 1st time. Whatever the data we are insert into the source table, it will automatically go to our target table
+
+752
+01:19:28.250 --> 01:19:28.870
+Rushi sonawane: in.
+
+753
+01:19:28.870 --> 01:19:30.950
+Umesh Mahajan: And how it will go to the project table.
+
+754
+01:19:30.950 --> 01:19:35.730
+Rushi sonawane: Because we are creating. We are writing a more statement in our.
+
+755
+01:19:36.390 --> 01:19:38.489
+Rushi sonawane: okay, tough. Okay.
+
+756
+01:19:40.843 --> 01:19:50.190
+Rushi sonawane: After that, when we are inserting the same reports, second, attempt, it will not, insert into the target table. It will just showing. You know our stream.
+
+757
+01:19:50.520 --> 01:19:54.336
+Umesh Mahajan: So let me understand. I'll bring the excel.
+
+758
+01:20:15.250 --> 01:20:18.500
+Umesh Mahajan: So you have the source table, let's say, order.
+
+759
+01:20:35.410 --> 01:20:40.919
+Umesh Mahajan: This is the column that I have for order table. Then you create a stream. Okay?
+
+760
+01:20:41.020 --> 01:20:42.090
+Rushi sonawane: Yes, yes.
+
+761
+01:20:44.320 --> 01:20:50.609
+Umesh Mahajan: So any it will have this columns and plus 3 columns for metadata column. Right
+
+762
+01:20:50.700 --> 01:21:08.689
+Umesh Mahajan: in. Honestly, we'll have this 3 column, M. One metadata, one metadata, 2 and metadata 3. Which will tell me, what's my update insert or delete. So whenever any change happens to this, someone inserted a record to it.
+
+763
+01:21:14.610 --> 01:21:29.470
+Umesh Mahajan: Okay, if someone inserts the record and I created the stream on a blank table before loading the record. This the record will be there in my stream. As is right. So you you are so far with me.
+
+764
+01:21:30.570 --> 01:21:31.970
+Rushi sonawane: Yes, sir.
+
+765
+01:21:32.670 --> 01:21:35.138
+Umesh Mahajan: Maybe some update or something inside.
+
+766
+01:21:37.120 --> 01:21:43.479
+Umesh Mahajan: So what you are saying on this table I perform an update, or I perform and merge.
+
+767
+01:21:43.480 --> 01:21:44.470
+Rushi sonawane: No, sir.
+
+768
+01:21:44.470 --> 01:21:44.950
+Umesh Mahajan: Him.
+
+769
+01:21:44.950 --> 01:21:51.290
+Rushi sonawane: Hello, sir, we are not updating the record. We are inserting the same record in source table id, one production
+
+770
+01:21:51.610 --> 01:21:52.740
+Rushi sonawane: sequel. Yes.
+
+771
+01:21:52.940 --> 01:21:55.468
+Umesh Mahajan: I insert the same record. Okay.
+
+772
+01:21:58.480 --> 01:22:07.259
+Rushi sonawane: And that that request goes to our order. Strip. But thought, those records are not inserted into our target table.
+
+773
+01:22:08.190 --> 01:22:12.474
+Umesh Mahajan: So like, let's say, this goes into
+
+774
+01:22:14.620 --> 01:22:19.440
+Umesh Mahajan: the same record, goes into the order table
+
+775
+01:22:19.480 --> 01:22:20.920
+Umesh Mahajan: or the stream. So.
+
+776
+01:22:20.920 --> 01:22:21.590
+Rushi sonawane: Order screams.
+
+777
+01:22:21.590 --> 01:22:23.109
+Umesh Mahajan: Again the insert
+
+778
+01:22:23.891 --> 01:22:29.989
+Umesh Mahajan: this will be made as this friend Metadata. I'll get put into 2. Now, where is my target table?
+
+779
+01:22:30.810 --> 01:22:32.623
+Rushi sonawane: We have to create it, sir. We deduct.
+
+780
+01:22:32.850 --> 01:22:36.670
+Umesh Mahajan: Let's say, this is my target table. And
+
+781
+01:22:37.040 --> 01:22:41.110
+Umesh Mahajan: this is based table. This is my target table. Suppose.
+
+782
+01:22:42.181 --> 01:22:44.788
+Umesh Mahajan: okay. So now, what.
+
+783
+01:22:47.000 --> 01:22:48.750
+Rushi sonawane: Yes.
+
+784
+01:22:48.750 --> 01:22:49.849
+Umesh Mahajan: You. You also do
+
+785
+01:22:50.670 --> 01:22:50.960
+Umesh Mahajan: that.
+
+786
+01:22:51.317 --> 01:22:59.550
+Rushi sonawane: 1st palajo record how many road care road care, one ABC. One or 30 YR. The second payment said career one er.
+
+787
+01:23:01.200 --> 01:23:04.360
+Umesh Mahajan: So there is no relation. Okay? There is.
+
+788
+01:23:04.410 --> 01:23:11.210
+Umesh Mahajan: 1st of all, there is no relation of this stream with this target table. It's just between these 2,
+
+789
+01:23:11.550 --> 01:23:16.460
+Umesh Mahajan: between this table and this. How do you load? How you're loading this table
+
+790
+01:23:16.945 --> 01:23:19.380
+Umesh Mahajan: the target table from base table.
+
+791
+01:23:20.150 --> 01:23:22.019
+Rushi sonawane: Through the merge period. Sir.
+
+792
+01:23:22.520 --> 01:23:31.520
+Umesh Mahajan: Okay? Through the merge query, okay, so merge what it does. So stream code using your pay stream is invariant. So whenever something.
+
+793
+01:23:31.520 --> 01:23:31.870
+Rushi sonawane: Going to be.
+
+794
+01:23:31.870 --> 01:23:32.410
+Umesh Mahajan: In, the.
+
+795
+01:23:32.410 --> 01:23:36.880
+Rushi sonawane: Sir, we are applying the merge query on the order stream. Whatever the changes.
+
+796
+01:23:36.880 --> 01:23:37.360
+Umesh Mahajan: Oh!
+
+797
+01:23:37.360 --> 01:23:41.939
+Rushi sonawane: Appears in the order stream. Those data opens only the target table.
+
+798
+01:23:42.130 --> 01:23:59.276
+Umesh Mahajan: Okay. So let me understand. So you are what you are doing. You are trying to detect what are the updates and what are the insert from the stream, and then you are apple using the stream and order table to populate the target table. Is that what you are trying to do.
+
+799
+01:23:59.600 --> 01:24:00.950
+Rushi sonawane: Yes, sir, excellent!
+
+800
+01:24:01.260 --> 01:24:02.690
+Umesh Mahajan: Okay, okay.
+
+801
+01:24:03.030 --> 01:24:18.970
+Umesh Mahajan: okay, got. And what you are saying is what is happening. So how you are doing or identifying this records to be inserted, and this records to be updated. You are using the stream to identify it. Am I correct.
+
+802
+01:24:20.850 --> 01:24:21.640
+Rushi sonawane: Yes, sir.
+
+803
+01:24:22.050 --> 01:24:24.699
+Umesh Mahajan: So you stream to
+
+804
+01:24:24.730 --> 01:24:32.480
+Umesh Mahajan: populate the target table based on the whether it insert or update. So, for example, I updated this
+
+805
+01:24:35.270 --> 01:24:37.269
+Umesh Mahajan: so I'll get something like this.
+
+806
+01:24:44.130 --> 01:24:46.850
+Umesh Mahajan: I'm just making this. It'll be inside.
+
+807
+01:24:47.550 --> 01:24:51.179
+Umesh Mahajan: and the previous will be delete. This will be a delete.
+
+808
+01:24:52.320 --> 01:24:53.330
+Umesh Mahajan: But ape.
+
+809
+01:24:54.260 --> 01:25:01.119
+Umesh Mahajan: and based on this it should be up. Added to this thing. Is that what you are trying to do.
+
+810
+01:25:01.710 --> 01:25:11.720
+Rushi sonawane: Yes, sir, but at the time what happened, our newly inserted department means where we are changing the price. ₹30 those only for you know what we have changing
+
+811
+01:25:11.770 --> 01:25:25.449
+Rushi sonawane: a quantity, we are changing the quantity. We are changing quantity at 10, those recording into the target table. But previous record we are not able to insert, because it says that it is a duplicate record or same record.
+
+812
+01:25:25.610 --> 01:25:30.649
+Umesh Mahajan: Yeah. So do you know about the merge statement?
+
+813
+01:25:33.540 --> 01:25:34.370
+Rushi sonawane: Yes, sir.
+
+814
+01:25:34.870 --> 01:25:41.312
+Umesh Mahajan: So what I'm trying to say, you can achieve the same functionality without using the stream. Also.
+
+815
+01:25:42.110 --> 01:25:48.849
+Umesh Mahajan: you don't have to use the stream. So basically what you are saying now.
+
+816
+01:25:48.860 --> 01:25:56.952
+Umesh Mahajan: any change happens, it should automatically detect. And if it's update, you update it.
+
+817
+01:25:59.300 --> 01:26:07.739
+Umesh Mahajan: If the quantities get updated update here. If it's a new record, get inserted something like 2 PQR.
+
+818
+01:26:10.920 --> 01:26:24.350
+Umesh Mahajan: 1, 20. So what happened here? If you compare this 2 tables, what happened? The new record get added as well as the old record record gives updated. And let's say, there is a delete also.
+
+819
+01:26:32.000 --> 01:26:35.820
+Umesh Mahajan: So yeah, Delete, we have. Yeah update. We have
+
+820
+01:26:36.500 --> 01:26:47.869
+Umesh Mahajan: this update, Beha, and can you insert B, so what will happen to this table? So you can use the merge statement. So what Merge will say, if the record exists.
+
+821
+01:26:48.000 --> 01:26:50.229
+Umesh Mahajan: it will is going to update it.
+
+822
+01:26:50.370 --> 01:26:52.140
+Umesh Mahajan: If there is an update.
+
+823
+01:26:52.210 --> 01:27:12.569
+Umesh Mahajan: if record does not exist, it's going to insert it. So that's what it it's going to do. So I think syntax is merge table. Emerge into table name using my source table, which is order table, and you can say when match we need some id.
+
+824
+01:27:12.650 --> 01:27:17.689
+Umesh Mahajan: So I'll say order id, because that needs an column.
+
+825
+01:27:17.700 --> 01:27:20.310
+Umesh Mahajan: So order id of the match Hogan
+
+826
+01:27:20.470 --> 01:27:35.740
+Umesh Mahajan: to vuk Orega. If this order id one exists in my target so it will check for an any Update. If there any update, it's going to update a record. Otherwise it just going to
+
+827
+01:27:36.690 --> 01:27:37.460
+Umesh Mahajan: terror.
+
+828
+01:27:38.780 --> 01:27:43.359
+Umesh Mahajan: Keep the same rep or so you can use the update. Now.
+
+829
+01:27:43.920 --> 01:27:54.519
+Umesh Mahajan: can I use similar feature with this using the stream. Yes, you can use, but you will have to write first.st You will have to detect the latest record.
+
+830
+01:27:54.660 --> 01:28:08.099
+Umesh Mahajan: Then you will have to compare this order, stream and order target table and see what are, how many are a new records, how many are update records, and how many are delete records
+
+831
+01:28:08.260 --> 01:28:11.219
+Umesh Mahajan: based on that. You will insert the data.
+
+832
+01:28:11.330 --> 01:28:14.080
+Umesh Mahajan: So it's a custom thing you will write.
+
+833
+01:28:14.963 --> 01:28:17.629
+Umesh Mahajan: You got it. What I'm trying to say.
+
+834
+01:28:17.910 --> 01:28:18.900
+Rushi sonawane: Yeah, yes, sir.
+
+835
+01:28:19.420 --> 01:28:23.301
+Umesh Mahajan: Because we can identify what is insert. What is delete?
+
+836
+01:28:23.830 --> 01:28:26.499
+Umesh Mahajan: Then you compare this with this.
+
+837
+01:28:26.690 --> 01:28:35.060
+Umesh Mahajan: just find out the union or intersection of it. And then based on that. So what I'm saying.
+
+838
+01:28:35.190 --> 01:28:42.160
+Umesh Mahajan: let's say this is the record. Let me add it. If we add this stream 8 min
+
+839
+01:28:42.270 --> 01:28:44.730
+Umesh Mahajan: a insert E.
+
+840
+01:28:44.730 --> 01:28:49.489
+Venkatesh Allapure: This long process we can use the dynamic table. So.
+
+841
+01:28:50.892 --> 01:28:53.430
+Umesh Mahajan: User merge merge is very easy. One
+
+842
+01:28:53.480 --> 01:29:06.220
+Umesh Mahajan: even don't go to dynamic table. Because again, yes, you can use a dynamic table. Also, you can use views also to join this to and detect what are the new delete. But
+
+843
+01:29:06.710 --> 01:29:11.500
+Umesh Mahajan: there is already a merge statement available. Use that one.
+
+844
+01:29:13.650 --> 01:29:14.520
+Umesh Mahajan: Okay.
+
+845
+01:29:14.690 --> 01:29:20.769
+Venkatesh Allapure: In dynamic table. We not need to create streams around this table.
+
+846
+01:29:21.030 --> 01:29:23.890
+Venkatesh Allapure: So directly changes are.
+
+847
+01:29:24.050 --> 01:29:24.870
+Venkatesh Allapure: O,
+
+848
+01:29:25.980 --> 01:29:27.459
+Venkatesh Allapure: Jane just had a
+
+849
+01:29:27.860 --> 01:29:29.740
+Venkatesh Allapure: miss update or delete
+
+850
+01:29:29.920 --> 01:29:31.719
+Venkatesh Allapure: are done in dynamic.
+
+851
+01:29:32.115 --> 01:29:38.050
+Umesh Mahajan: Yeah, but in how you will in dynamic table, how you will deal with deletes
+
+852
+01:29:39.800 --> 01:29:44.730
+Umesh Mahajan: if some record is deleted, how you will detect that it's deleted.
+
+853
+01:29:47.950 --> 01:29:49.119
+Venkatesh Allapure: Did it not happen? I think.
+
+854
+01:29:49.990 --> 01:30:04.099
+Umesh Mahajan: Alright. So in dynamic table it will populate whatever is there in the table? Correct? So for Delete, we need to know that. Yes, that record is, we can do that. We can what we can do if the record does not exist.
+
+855
+01:30:04.584 --> 01:30:07.250
+Umesh Mahajan: But there should be a reference.
+
+856
+01:30:07.270 --> 01:30:08.790
+Umesh Mahajan: He would delete a wire
+
+857
+01:30:08.810 --> 01:30:10.699
+Umesh Mahajan: so best way to use.
+
+858
+01:30:11.550 --> 01:30:12.970
+Umesh Mahajan: The stream.
+
+859
+01:30:13.010 --> 01:30:15.169
+Umesh Mahajan: or use a merge statement
+
+860
+01:30:15.900 --> 01:30:22.179
+Umesh Mahajan: that are the 2 options to use, I would prefer to use a merge statement because it's the
+
+861
+01:30:22.600 --> 01:30:36.139
+Umesh Mahajan: available as an statement. So it means that is, it is optimized. Or use this stream. If you want to visualize also how many deletes or queries you want to perform, do you?
+
+862
+01:30:39.590 --> 01:30:42.469
+Umesh Mahajan: You already have performed that. So you can use
+
+863
+01:30:42.950 --> 01:30:44.490
+Umesh Mahajan: the stream also?
+
+864
+01:30:50.850 --> 01:30:56.230
+Umesh Mahajan: Okay, I'm looking at any questions you have written on.
+
+865
+01:31:03.030 --> 01:31:05.159
+Umesh Mahajan: No, I don't see any question yet.
+
+866
+01:31:07.430 --> 01:31:09.620
+Venkatesh Allapure: Say we don't have access to write on.
+
+867
+01:31:13.320 --> 01:31:14.639
+Umesh Mahajan: On stream.
+
+868
+01:31:19.580 --> 01:31:22.830
+Umesh Mahajan: No, you you cannot explicitly change the stream.
+
+869
+01:31:24.740 --> 01:31:29.169
+Umesh Mahajan: Oh, on excel I provided the access to the excel, I think.
+
+870
+01:31:29.847 --> 01:31:32.710
+Umesh Mahajan: Whoever has a link can now edit it.
+
+871
+01:31:37.650 --> 01:31:43.119
+Umesh Mahajan: Okay, there is one more question, how Poc works while acquiring client project
+
+872
+01:31:44.099 --> 01:31:45.479
+Umesh Mahajan: so it
+
+873
+01:31:45.950 --> 01:31:49.905
+Umesh Mahajan: what they do. In case of Poc.
+
+874
+01:31:51.280 --> 01:31:58.569
+Umesh Mahajan: if it's a paid poc, they will give some tasks, they will say, Oh, I, for example.
+
+875
+01:31:58.570 --> 01:32:23.989
+Umesh Mahajan: they have to migrate the Netiza data to the snowflake, and they say that can snowflake perform very well efficient with this amount of the data, or how good Snowflake is in asset queries. Then on top using their requirements, you provide the solution up in Kobata. Snowflake can handle this much data, this much.
+
+876
+01:32:27.440 --> 01:32:29.910
+Umesh Mahajan: Use many workloads and other thing.
+
+877
+01:32:30.252 --> 01:32:31.540
+Umesh Mahajan: Then you will do.
+
+878
+01:32:31.580 --> 01:32:32.650
+Umesh Mahajan: See?
+
+879
+01:32:33.090 --> 01:32:37.729
+Umesh Mahajan: So in reader, desert Echa, they will give some sample data to you.
+
+880
+01:32:38.150 --> 01:32:43.849
+Umesh Mahajan: and they will say, Hi, yay ludicrata, or use case features.
+
+881
+01:32:44.070 --> 01:32:46.060
+Umesh Mahajan: but the Okya features.
+
+882
+01:32:46.340 --> 01:32:50.480
+Umesh Mahajan: Ludo Day, any. So that sort of Pocs will be there.
+
+883
+01:32:56.480 --> 01:33:07.300
+Umesh Mahajan: and I don't think for Snowflake there needs to be a Poc, because it's well proven so for Snowflake. I don't think they will ask for Poc.
+
+884
+01:33:08.880 --> 01:33:22.940
+Umesh Mahajan: Maybe if they ask, they will ask because of the capacity of the company. But technology, wise ascending Yoga kiwanco pathanic is Snowflake kakar Satik, and it's more fairly open.
+
+885
+01:33:24.120 --> 01:33:26.419
+Samir More: What if someone asked.
+
+886
+01:33:26.830 --> 01:33:29.920
+Samir More: voicemail clip is preferred for synapse
+
+887
+01:33:31.560 --> 01:33:34.400
+Samir More: let me have to highlight the feature on the.
+
+888
+01:33:34.740 --> 01:33:40.840
+Umesh Mahajan: Yes, yes. So if you someone ask, what are the features? You will highlight there
+
+889
+01:33:43.670 --> 01:33:45.800
+Umesh Mahajan: comparison to sign ups.
+
+890
+01:33:47.600 --> 01:33:49.979
+Samir More: Like storage optimization.
+
+891
+01:33:53.640 --> 01:33:55.610
+Umesh Mahajan: then multiple.
+
+892
+01:33:55.610 --> 01:33:56.170
+Rushi sonawane: Feathers.
+
+893
+01:33:56.170 --> 01:33:57.519
+Venkatesh Allapure: Yeah, plus turkey.
+
+894
+01:33:58.110 --> 01:33:59.060
+Samir More: And get at home.
+
+895
+01:33:59.360 --> 01:34:03.549
+Venkatesh Allapure: Automatic that it means it can connect with Tcp also and
+
+896
+01:34:03.940 --> 01:34:05.360
+Venkatesh Allapure: Adebbles. But.
+
+897
+01:34:06.910 --> 01:34:07.930
+Umesh Mahajan: So
+
+898
+01:34:08.090 --> 01:34:12.719
+Umesh Mahajan: you you you can say that if you compare with the sign apps.
+
+899
+01:34:13.205 --> 01:34:14.880
+Umesh Mahajan: We signed up to which
+
+900
+01:34:14.900 --> 01:34:39.980
+Umesh Mahajan: a cluster base right? So this is pay as you go. You don't have to keep running the cluster auto scale, I think. Sign up is also auto scale now. But 0 copy clone time travel you can do the time travel. 0 copy clone native SDK supports. There are a lot of SDK Api support is there?
+
+901
+01:34:40.965 --> 01:34:41.910
+Umesh Mahajan: Then
+
+902
+01:34:42.410 --> 01:34:47.120
+Umesh Mahajan: you can say, storage is optimized, compressed.
+
+903
+01:34:47.775 --> 01:34:52.669
+Umesh Mahajan: That is the another benefit will have over the sign apps
+
+904
+01:34:55.950 --> 01:35:04.734
+Umesh Mahajan: easy to use integration. These are the major things you can tell about, and
+
+905
+01:35:05.830 --> 01:35:11.548
+Umesh Mahajan: connectivity to other applications is open connectivity in sign apps.
+
+906
+01:35:12.410 --> 01:35:15.236
+Umesh Mahajan: you, if you want to connect is
+
+907
+01:35:16.130 --> 01:35:29.050
+Umesh Mahajan: You will have to define the role and other thing the users for that. There is a read replic, also type of features that you can use. So these are the some. If you tell the these unique features.
+
+908
+01:35:29.240 --> 01:35:34.712
+Umesh Mahajan: 0 copy tone, read replica shares that you can create.
+
+909
+01:35:35.420 --> 01:35:41.459
+Umesh Mahajan: these features will automatically differentiate when you compare with the sign apps.
+
+910
+01:35:42.023 --> 01:35:43.519
+Samir More: Share. Also there inside.
+
+911
+01:35:43.520 --> 01:35:44.529
+Umesh Mahajan: This year.
+
+912
+01:35:44.960 --> 01:35:46.970
+Umesh Mahajan: 0 copy clone share.
+
+913
+01:35:47.606 --> 01:35:49.389
+Samir More: Sign up software share.
+
+914
+01:35:50.460 --> 01:36:01.209
+Umesh Mahajan: Yeah, but it. It needs then account and other details. Right, reader, here you will have the reader account that you can create and assign the share.
+
+915
+01:36:03.250 --> 01:36:04.030
+Samir More: Focus.
+
+916
+01:36:05.530 --> 01:36:06.490
+Venkatesh Allapure: And sir
+
+917
+01:36:06.970 --> 01:36:17.620
+Umesh Mahajan: Time travel that the mainly I I would prefer to 0 copy, clone and time travel are the important features. Sorry? Yes, go ahead.
+
+918
+01:36:20.430 --> 01:36:24.590
+Venkatesh Allapure: Who supports your desk to.
+
+919
+01:36:24.720 --> 01:36:26.869
+Venkatesh Allapure: or via Ssina.
+
+920
+01:36:27.290 --> 01:36:28.880
+Umesh Mahajan: Who supports the best.
+
+921
+01:36:30.020 --> 01:36:31.170
+Venkatesh Allapure: Good, for we are.
+
+922
+01:36:32.580 --> 01:36:37.969
+Umesh Mahajan: Good for Bi. I would prefer the snowflake here for Bi.
+
+923
+01:36:41.190 --> 01:36:41.909
+Venkatesh Allapure: Why is it?
+
+924
+01:36:42.720 --> 01:36:45.286
+Umesh Mahajan: Yup. The reason is that
+
+925
+01:36:46.020 --> 01:36:49.753
+Umesh Mahajan: the connectivity that it has
+
+926
+01:36:51.270 --> 01:36:53.109
+Umesh Mahajan: over the synapse.
+
+927
+01:36:53.260 --> 01:36:58.839
+Umesh Mahajan: The second thing is the query. Processing is faster.
+
+928
+01:36:58.940 --> 01:37:23.529
+Umesh Mahajan: The provisioning. You don't have to. So if my query is taking a lot of time, so in synapse, you provision a cluster. Of course it's auto scale, but it's you will have to manage it right here. In this case. You don't have to manage that cluster or provisioning part of it. If you just provide the warehouse
+
+929
+01:37:23.530 --> 01:37:34.060
+Umesh Mahajan: this and it's auto suspend type of warehouse. So you will not get charged for what you caching is another mechanism which
+
+930
+01:37:34.690 --> 01:37:42.000
+Umesh Mahajan: I think, in synapse also, you can have also caching, but these are the important features which differentiate
+
+931
+01:37:42.280 --> 01:37:46.279
+Umesh Mahajan: to use for power, bi, or any other bi reporting tool.
+
+932
+01:37:47.268 --> 01:37:54.831
+Samir More: Sir, answer I observe that in sign ups there are 5 min for auto suspension in a snowclick.
+
+933
+01:37:55.230 --> 01:37:55.990
+Umesh Mahajan: Minimum.
+
+934
+01:37:56.330 --> 01:37:56.670
+Samir More: One.
+
+935
+01:37:56.670 --> 01:37:57.770
+Umesh Mahajan: 1 min. Yeah.
+
+936
+01:38:03.634 --> 01:38:07.090
+Samir More: There is also one more business costing will be
+
+937
+01:38:07.130 --> 01:38:08.980
+Samir More: per data in same apps.
+
+938
+01:38:09.410 --> 01:38:12.640
+Samir More: Whereas in snowflake it is per annual.
+
+939
+01:38:13.100 --> 01:38:18.269
+Umesh Mahajan: Yeah, and synapse, I think. Have they released the
+
+940
+01:38:18.890 --> 01:38:22.259
+Umesh Mahajan: this thing? Serverless part yet or not?
+
+941
+01:38:22.660 --> 01:38:25.529
+Umesh Mahajan: I ended up for aws, they have.
+
+942
+01:38:25.630 --> 01:38:26.400
+Umesh Mahajan: Yeah.
+
+943
+01:38:27.203 --> 01:38:30.820
+Samir More: One server less sequential, and one is dedicated. Sequential.
+
+944
+01:38:34.040 --> 01:38:39.049
+Venkatesh Allapure: I'm sorry we are, which we prefer. Azure. Cn. App. Now.
+
+945
+01:38:39.090 --> 01:38:40.240
+Venkatesh Allapure: lofty.
+
+946
+01:38:42.290 --> 01:38:43.230
+Umesh Mahajan: Surrey's.
+
+947
+01:38:43.400 --> 01:38:46.200
+Umesh Mahajan: which which one is preferred for
+
+948
+01:38:46.550 --> 01:38:47.980
+Umesh Mahajan: compared to what.
+
+949
+01:38:47.980 --> 01:38:54.751
+Venkatesh Allapure: That means we are working on as a cloud. So the problem, or as a Singapore.
+
+950
+01:38:56.110 --> 01:39:13.990
+Umesh Mahajan: Oh, if you are working in azure cloud, what is preferred, whether synapse or snowflake is that was your question is, yeah. So it depends on the use case and
+
+951
+01:39:14.510 --> 01:39:16.590
+Umesh Mahajan: so generally, what happens?
+
+952
+01:39:16.680 --> 01:39:29.479
+Umesh Mahajan: Organization doesn't go with one cloud provider they want to be a hybrid in a nature or multi cloud atlas or cloud agnostic, that's what the term they call.
+
+953
+01:39:29.700 --> 01:39:33.969
+Umesh Mahajan: Why, why they do this thing, why, they use
+
+954
+01:39:34.470 --> 01:39:35.690
+Umesh Mahajan: different
+
+955
+01:39:37.050 --> 01:39:46.209
+Umesh Mahajan: different tools to perform the activity. The reason is that they don't want to have a dependency on one vendor.
+
+956
+01:39:46.990 --> 01:39:51.910
+Umesh Mahajan: So if you see in Banks Bank may use
+
+957
+01:39:52.020 --> 01:40:14.820
+Umesh Mahajan: oracle, Gcp. Alibaba or Google everything. In one project, also, you will see people use many technologies right? The reason is that these are interrelated. They don't want to depend on one vendor. They want to explore and use all the capabilities. So
+
+958
+01:40:14.820 --> 01:40:22.507
+Umesh Mahajan: for that purpose they just want to use the hybrid cloud or cloud agnostic of their code
+
+959
+01:40:22.960 --> 01:40:44.469
+Umesh Mahajan: for that purpose. And there are some limitations like, if you go with the one database. So if I'm I just query, a data. And I just need my warehouse sitting there. Why do I use the sign apps? Or why do I need a azure account? So I can go ahead and use
+
+960
+01:40:45.180 --> 01:40:52.720
+Umesh Mahajan: the snowflake only. So right now the projects up till now I have worked where the Snowflake is involved.
+
+961
+01:40:52.740 --> 01:41:00.570
+Umesh Mahajan: Either there was a Google or Gcp. Or Azure cloud. It's not that they are not using the native
+
+962
+01:41:01.363 --> 01:41:02.770
+Umesh Mahajan: services like
+
+963
+01:41:02.820 --> 01:41:07.579
+Umesh Mahajan: the one I was using. The Emr. What Emr was doing. Emr was
+
+964
+01:41:07.620 --> 01:41:15.600
+Umesh Mahajan: getting the data from sources and dumping into the snowflake. What Snowflake was doing. Snowflake was used as a data stored
+
+965
+01:41:15.710 --> 01:41:27.469
+Umesh Mahajan: to send the data or to the use the data by consumers. So they were using Emr as well as Emr. With S. 3 as a backup as well as Snowflake
+
+966
+01:41:28.070 --> 01:41:42.759
+Umesh Mahajan: and Rds was also used, which is equivalent to SQL. Server by SQL. Server, because some of the data was transactional data like data for
+
+967
+01:41:42.880 --> 01:41:46.289
+Umesh Mahajan: job control framework where we
+
+968
+01:41:46.330 --> 01:41:49.859
+Umesh Mahajan: log the information about the jobs so
+
+969
+01:41:50.670 --> 01:41:57.099
+Umesh Mahajan: ids was used. And it can. You can use also SQL server database equivalent in azure.
+
+970
+01:41:57.450 --> 01:42:03.829
+Umesh Mahajan: So multiple technologies were used. Now, you will say, sir? Snowflake. Sorry
+
+971
+01:42:04.620 --> 01:42:08.899
+Umesh Mahajan: azure has the code deployment feature right?
+
+972
+01:42:14.020 --> 01:42:17.320
+Umesh Mahajan: Why can't use that? Instead of
+
+973
+01:42:17.460 --> 01:42:30.040
+Umesh Mahajan: Cicd or azure has keyword feature. Then why? To use the hashtag world? Because hashic card world is enterprise, application, and
+
+974
+01:42:30.674 --> 01:42:37.100
+Umesh Mahajan: the key vault in the azure is just specific to azure only.
+
+975
+01:42:41.996 --> 01:42:46.640
+Samir More: Set regarding like. Previously, you said that Emi is used to
+
+976
+01:42:46.780 --> 01:42:50.030
+Samir More: take data from source and load into snowflake.
+
+977
+01:42:50.935 --> 01:42:54.760
+Samir More: Similarly, we can we use Adf to copy data from.
+
+978
+01:42:54.760 --> 01:42:55.410
+Umesh Mahajan: Yeah.
+
+979
+01:42:55.660 --> 01:43:00.470
+Samir More: Which one would they prefer? Using ado or stage, international
+
+980
+01:43:00.480 --> 01:43:02.240
+Samir More: or external, sorry.
+
+981
+01:43:02.240 --> 01:43:08.369
+Umesh Mahajan: Yeah. So sometimes you build the pipeline using
+
+982
+01:43:08.620 --> 01:43:13.190
+Umesh Mahajan: the existing tool. Now, I'll take you one example.
+
+983
+01:43:13.270 --> 01:43:21.909
+Umesh Mahajan: So the in the last project, when I was designing the pipeline, and when I talked to Enterprise Architect
+
+984
+01:43:22.150 --> 01:43:25.789
+Umesh Mahajan: on the tool selection, so what tools we should use
+
+985
+01:43:26.359 --> 01:43:32.910
+Umesh Mahajan: option I gave them to, and it was aws. So our option I gave them is
+
+986
+01:43:33.750 --> 01:43:47.894
+Umesh Mahajan: glue aws glue. Glue is similar to if you see in azure terms it is similar similar to data factory. Right? So basically,
+
+987
+01:43:48.690 --> 01:43:58.120
+Umesh Mahajan: you execute the script, and it will execute whatever you provided in the skip. And the very good features, very sophisticated, but
+
+988
+01:43:58.540 --> 01:44:13.960
+Umesh Mahajan: they insist they rejected that use selection tool selection, and they said, Use the Emr. And why? Emr? Because in their organization there was the tool usage was not approved.
+
+989
+01:44:13.980 --> 01:44:28.289
+Umesh Mahajan: It was not. Stbb approved, it was not arb approved. So now what is mean by Stbb and Arb. Stbb is stand for the tech board which approves the tool
+
+990
+01:44:28.798 --> 01:44:30.990
+Umesh Mahajan: in to use in organization
+
+991
+01:44:32.630 --> 01:44:34.909
+Umesh Mahajan: what it means. Suppose,
+
+992
+01:44:36.360 --> 01:44:41.819
+Umesh Mahajan: no, yeah. Software market. May I just come, hey? Let's say.
+
+993
+01:44:42.470 --> 01:44:44.070
+Umesh Mahajan: ABC, software.
+
+994
+01:44:44.200 --> 01:44:48.450
+Umesh Mahajan: And you will say you are working for a bank.
+
+995
+01:44:48.590 --> 01:45:10.749
+Umesh Mahajan: and you are a vendor from Tcs. So Abnabula array a J ABC tool labour. Ach, you do this thing, that thing. Okay, let's use. And you are a solution architect on this project. So you introduce this tool. You ask bank to buy that tool you implemented solution. Yes, good. It's working fine.
+
+996
+01:45:11.100 --> 01:45:13.080
+Umesh Mahajan: Good. Now.
+
+997
+01:45:13.110 --> 01:45:15.830
+Umesh Mahajan: after the project implementation.
+
+998
+01:45:15.940 --> 01:45:17.939
+Umesh Mahajan: Who is going to support that
+
+999
+01:45:18.000 --> 01:45:21.850
+Umesh Mahajan: Agar could issue a tahay to Kwon support Karega.
+
+1000
+01:45:22.050 --> 01:45:26.699
+Umesh Mahajan: Then, if Nayaku's development kernel the con support Karega.
+
+1001
+01:45:26.820 --> 01:45:31.725
+Umesh Mahajan: if it has to integrate with the internal systems
+
+1002
+01:45:32.290 --> 01:45:45.190
+Umesh Mahajan: own other, I suppose. What tool me upca data, but some other reporting tool which you are using since years is not able to integrate it. There is no integration available.
+
+1003
+01:45:45.270 --> 01:45:52.570
+Umesh Mahajan: So who is will be responsible for this? So job, be coach tool, introduce Karthi Company main.
+
+1004
+01:45:52.590 --> 01:45:58.330
+Umesh Mahajan: So there is a board which analyzes that tool punk, he.
+
+1005
+01:45:58.360 --> 01:46:00.249
+Umesh Mahajan: Omari Company, may get
+
+1006
+01:46:01.110 --> 01:46:17.919
+Umesh Mahajan: 100 tools. Some use correct? Can it integrate with this tool? What is the hardware requirement? What is the software requirement. What is the network implicit implications? How much data transfer it does? What is the throughput we can get by using this tool? What is the cost?
+
+1007
+01:46:18.454 --> 01:46:31.949
+Umesh Mahajan: Do we have a. If we use this? How many teams should use this? What is the resources available? To what are the l 2 l. 3. Support teams are available for this, so do they analyze
+
+1008
+01:46:32.240 --> 01:46:37.719
+Umesh Mahajan: on this all aspect of that tool, and then they approve the use of that tool.
+
+1009
+01:46:37.910 --> 01:46:41.619
+Umesh Mahajan: Teha a Tulham use Kursk they have.
+
+1010
+01:46:42.170 --> 01:46:47.940
+Umesh Mahajan: That's the Stb, so the software technology board, Jovo Apru Karega.
+
+1011
+01:46:48.410 --> 01:46:58.000
+Umesh Mahajan: Okay, tool selection now on next one is tool to approve. Okay. But what tool use kerke muji solution banana.
+
+1012
+01:46:58.090 --> 01:47:10.900
+Umesh Mahajan: Then also I have to go to Arb. Arb is architecture review board. So okay, you are approved to allow the tool. But are you using this tool correctly or not?
+
+1013
+01:47:11.850 --> 01:47:16.670
+Umesh Mahajan: Right? So there is again a review. So Matlabia does.
+
+1014
+01:47:18.050 --> 01:47:33.741
+Umesh Mahajan: multi factor authentication enabled for that tool does sort of single sign on enable. This tool does. All the patches and other things are are available for this tool, and are deployed every monthly weekly
+
+1015
+01:47:34.200 --> 01:47:35.360
+Umesh Mahajan: or not
+
+1016
+01:47:36.120 --> 01:47:55.869
+Umesh Mahajan: portal for this tool? What about the vulnerability of this tool? Does vendor support is available for this tool or not? How which data you are going to store in that tool. So upnivulus, no flag user log. Okay, but snowflake up the enterprise addition, Leah.
+
+1017
+01:47:56.070 --> 01:48:01.129
+Umesh Mahajan: right? But Akka data, business critical data. So
+
+1018
+01:48:01.170 --> 01:48:03.070
+Umesh Mahajan: up the enterprise earlier.
+
+1019
+01:48:03.090 --> 01:48:18.209
+Umesh Mahajan: So up. Propose Karaoke snow, play the approhay. Stb approved company may use krasaki, but you use enterprise where you should have used the business critical version or copy of the snowplay
+
+1020
+01:48:18.470 --> 01:48:20.030
+Umesh Mahajan: like. So
+
+1021
+01:48:20.300 --> 01:48:41.429
+Umesh Mahajan: in Architecture review board, it reviews what data you are using, what type of data you are using. How are you encrypting the data or not? So all that thing. So there is a presentation you will have to give to those Architecture Review Board, and that board approves or rejects or provide the suggestions. Recommendations.
+
+1022
+01:48:41.960 --> 01:48:50.400
+Umesh Mahajan: So it's not so easy to select the tool. Miraman huamuji, snowflake. Arta Matlab Snowflake. Use Karunga as a yota
+
+1023
+01:48:50.850 --> 01:48:55.840
+Umesh Mahajan: even in architecture review, or
+
+1024
+01:48:55.870 --> 01:48:57.445
+Umesh Mahajan: there is a
+
+1025
+01:48:58.490 --> 01:48:59.719
+Umesh Mahajan: one more
+
+1026
+01:49:00.382 --> 01:49:10.290
+Umesh Mahajan: so you have. Stb, you have r arb, and there is one more technical Review board which reviews how you are using it.
+
+1027
+01:49:11.300 --> 01:49:22.699
+Umesh Mahajan: So there is multiple ways. And then actually, you will use that tool. So it's just not a technical parameters. Yup, use Kuroga. There are other parameters also.
+
+1028
+01:49:24.260 --> 01:49:37.550
+Umesh Mahajan: Sorry I went, Lindy, but, in short, what I'm saying is that to use the sign apps, or to use any other thing, it depends on the project and lot more factors.
+
+1029
+01:49:40.390 --> 01:49:41.190
+Samir More: Focus.
+
+1030
+01:49:41.480 --> 01:49:43.079
+Umesh Mahajan: Not just a technical.
+
+1031
+01:49:46.720 --> 01:49:47.420
+Vishal Gavali: Hello, sir.
+
+1032
+01:49:47.850 --> 01:49:48.570
+Vishal Gavali: dip!
+
+1033
+01:49:49.010 --> 01:49:53.710
+Vishal Gavali: So which things are generally using in industry. Oh, snow! Break.
+
+1034
+01:49:55.530 --> 01:50:03.528
+Umesh Mahajan: so which feature so data load unload moi, mainly data loading is being used
+
+1035
+01:50:04.170 --> 01:50:16.149
+Umesh Mahajan: then query a lot of queries being used just like parsing the data, the semi structured data that thing being used
+
+1036
+01:50:16.728 --> 01:50:18.371
+Umesh Mahajan: apart from that
+
+1037
+01:50:19.900 --> 01:50:21.140
+Umesh Mahajan: snow park.
+
+1038
+01:50:21.420 --> 01:50:29.569
+Umesh Mahajan: it's being used. Sdks are used. Python integrator. SDK, that Nadeka. It's just a query execution
+
+1039
+01:50:31.280 --> 01:50:34.680
+Umesh Mahajan: that is being used, and snow sick. Well.
+
+1040
+01:50:35.680 --> 01:50:39.180
+Umesh Mahajan: that is also being used to submit or trigger the data
+
+1041
+01:50:39.340 --> 01:50:41.690
+Umesh Mahajan: pipelines or trigger the queries.
+
+1042
+01:50:43.240 --> 01:50:44.280
+Vishal Gavali: Okay, sir. Thank you.
+
+1043
+01:50:44.590 --> 01:50:45.370
+Vishal Gavali: Kim.
+
+1044
+01:50:48.380 --> 01:50:49.070
+Venkatesh Allapure: Elizabeth
+
+1045
+01:50:51.000 --> 01:50:52.170
+Venkatesh Allapure: hey, Riley.
+
+1046
+01:50:52.220 --> 01:50:58.500
+Venkatesh Allapure: I want to migrate data from multiple snowflake or storage account.
+
+1047
+01:50:59.920 --> 01:51:04.000
+Venkatesh Allapure: Yes, government under the solution of that challenge.
+
+1048
+01:51:04.000 --> 01:51:04.680
+Umesh Mahajan: No.
+
+1049
+01:51:04.850 --> 01:51:05.879
+Umesh Mahajan: you can hear me
+
+1050
+01:51:06.350 --> 01:51:14.649
+Umesh Mahajan: so. We assume that the tool is and everything is approved. Now as a solution. Architect, what questions you will ask
+
+1051
+01:51:15.270 --> 01:51:30.739
+Umesh Mahajan: the question you will ask, okay, is it a lift and ship type of project? It it means, is that you have a table A in your old. Do you want the same table to be in? B new environment?
+
+1052
+01:51:32.090 --> 01:51:35.569
+Umesh Mahajan: That's a lift and ship type of project. Also.
+
+1053
+01:51:35.630 --> 01:51:49.739
+Umesh Mahajan: do you want. When goes to the target it, the table structure changes it. One table now goes into 3 tables. When it goes to the target. Is that happening.
+
+1054
+01:51:49.910 --> 01:52:02.020
+Umesh Mahajan: If it's that happening meaning you will have to write a pipeline to split that table. Then, as a solution, architect, you will think, oh, 1st time. I it will be a bulk load.
+
+1055
+01:52:02.100 --> 01:52:03.150
+Umesh Mahajan: because
+
+1056
+01:52:03.330 --> 01:52:26.350
+Umesh Mahajan: Arj may extract your data and load care. Snowflake May. But during this period data will keep changing correct. Then I need to build a Delta pipelines to update my data to be in sync, and there will be a 1 cut over where I will turn off the old and switch to the new one new database one. Right? Then you will also.
+
+1057
+01:52:26.703 --> 01:52:39.079
+Umesh Mahajan: Security is the one as if you are solution architect. You will ask, what is the security model? What is the role r back policy? What are the roles available in old system?
+
+1058
+01:52:39.513 --> 01:52:53.390
+Umesh Mahajan: What are the accesses to those role. So you will inherit that role also there. Data encryption. What are the data encryption requirements in the race or transit? What are those
+
+1059
+01:52:53.390 --> 01:53:12.770
+Umesh Mahajan: Sdks functional to see? Where do you want to? Where is this data is integrated to the downstream system and upstream system? Does so. For example, up mokare informatica. Say, snowflake may. So yeah, informatic co conce system data provider.
+
+1060
+01:53:13.060 --> 01:53:14.110
+Umesh Mahajan: odd.
+
+1061
+01:53:14.900 --> 01:53:33.470
+Umesh Mahajan: informatic as a consensus system data laype. What is the connectivity pattern? Can that same pattern be repeated with the snowflake encryption, as I mentioned? Is it possible to encrypt the number of user? How many user accesses the data in informatic
+
+1062
+01:53:33.939 --> 01:53:56.349
+Umesh Mahajan: right is the same number can people access? What is the latency? If the user says that in millisecond, I should able to query, this table which has millions of record, is the same latency we achieved in with the snowflake or not sizing of snowflake cluster.
+
+1063
+01:53:56.380 --> 01:54:14.569
+Umesh Mahajan: because the size is different. The hardware is different. The configuration is different. So whether to use small warehouse extra small warehouse, or what should be that access pattern based on access pattern. You will define the warehouse.
+
+1064
+01:54:14.810 --> 01:54:24.190
+Umesh Mahajan: So there are. It looks lift and ship, but just a data lift and shape. But along with that there are lot many things it goes.
+
+1065
+01:54:24.980 --> 01:54:30.319
+Umesh Mahajan: These sort of questions you will ask, or you will prepare the answers for these questions
+
+1066
+01:54:32.110 --> 01:54:34.870
+Umesh Mahajan: and Abulagasari
+
+1067
+01:54:35.170 --> 01:54:36.900
+Umesh Mahajan: some cases. CK.
+
+1068
+01:54:37.040 --> 01:54:40.900
+Umesh Mahajan: So yesekness and AI guy. This is with the experience.
+
+1069
+01:54:44.540 --> 01:54:51.499
+Venkatesh Allapure: We explain this with your one past examination, real time.
+
+1070
+01:54:52.000 --> 01:54:52.840
+Umesh Mahajan: Umhm. It's
+
+1071
+01:54:53.300 --> 01:55:02.599
+Umesh Mahajan: we but the migration project Kikaka question pueche k answer lia case a design, Kia, is that one you're talking right.
+
+1072
+01:55:02.600 --> 01:55:06.509
+Venkatesh Allapure: Now. Only talking about data migration one year.
+
+1073
+01:55:06.945 --> 01:55:07.379
+Umesh Mahajan: Yesterday.
+
+1074
+01:55:07.380 --> 01:55:10.759
+Venkatesh Allapure: Experience. The 1st experience. Can you explain with that.
+
+1075
+01:55:11.540 --> 01:55:14.900
+Umesh Mahajan: Okay, I think I'll take this example.
+
+1076
+01:55:25.680 --> 01:55:27.582
+Samir More: But in case of warehouse
+
+1077
+01:55:28.350 --> 01:55:35.439
+Samir More: Can we go from top to bottom? Approach means selecting large errors. And as for our requirement, we can scale down.
+
+1078
+01:55:36.650 --> 01:55:38.050
+Samir More: Yeah, real. I mean.
+
+1079
+01:55:38.050 --> 01:55:39.350
+Umesh Mahajan: Can do.
+
+1080
+01:55:40.470 --> 01:55:42.550
+Samir More: What would be ideal scenario.
+
+1081
+01:55:43.970 --> 01:55:45.642
+Umesh Mahajan: So generally it.
+
+1082
+01:55:47.360 --> 01:55:50.400
+Umesh Mahajan: people design the warehouse.
+
+1083
+01:55:51.620 --> 01:55:55.539
+Umesh Mahajan: with some consideration. Basic. And if they from
+
+1084
+01:55:55.850 --> 01:56:02.459
+Umesh Mahajan: small value to high value, it's suppose muj based on pattern, I think.
+
+1085
+01:56:02.930 --> 01:56:14.270
+Umesh Mahajan: Medium warehouse is sufficient. Then I'll go for medium if some performance challenges are coming, and then and then I go for provisioning the higher cluster.
+
+1086
+01:56:15.710 --> 01:56:19.560
+Samir More: Okay, till now. Which way of size you prefer.
+
+1087
+01:56:19.600 --> 01:56:20.839
+Samir More: you know. Okay, cool.
+
+1088
+01:56:21.412 --> 01:56:23.128
+Umesh Mahajan: So lower environment
+
+1089
+01:56:23.910 --> 01:56:36.938
+Umesh Mahajan: basic testing the small to medium, that is sufficient small to medium sufficient in terms of size in terms of this is about
+
+1090
+01:56:37.610 --> 01:56:50.939
+Umesh Mahajan: the size of warehouse. But now, if I want to scale up or even scale out, so then I would say, have 1 1 to 10 clusters.
+
+1091
+01:56:50.960 --> 01:56:57.489
+Umesh Mahajan: but automatic. So I can have y 1 to 10. Because
+
+1092
+01:56:58.140 --> 01:57:05.179
+Umesh Mahajan: first, st May John Tauki, okay, kidney logaxes, Keringi Mujipatachala, 80 log axis karangi.
+
+1093
+01:57:05.220 --> 01:57:30.949
+Umesh Mahajan: then 80 logo may say, what will be the sizes of query if I know that my data is around 1 TB and people averagely access may access the data around few. Gb's 5 or 10 Gb, so it means it's not a big deal, but 80 or 100 people is more if they concurrently. And this this is, I'm talking about concurrent data.
+
+1094
+01:57:30.950 --> 01:57:37.419
+Umesh Mahajan: Okay? At the same time, 80 log X is carrying it. So if I use a large warehouse
+
+1095
+01:57:37.450 --> 01:57:39.610
+Umesh Mahajan: doesn't matter, because
+
+1096
+01:57:40.450 --> 01:57:45.449
+Umesh Mahajan: I'm not accessing a very large data. The number of users are more
+
+1097
+01:57:45.590 --> 01:57:47.547
+Umesh Mahajan: so instead of
+
+1098
+01:57:48.550 --> 01:58:01.560
+Umesh Mahajan: that, I will use the scale out, and will have the many cluster. So I would say, one to 10 cluster I should have of medium size. So sizing is again a important factor.
+
+1099
+01:58:04.250 --> 01:58:05.360
+Samir More: Focus.
+
+1100
+01:58:08.440 --> 01:58:12.335
+Umesh Mahajan: Okay? So right now, if I have to build this pipeline
+
+1101
+01:58:12.910 --> 01:58:16.499
+Umesh Mahajan: as solution architect, suppose, I say that
+
+1102
+01:58:16.590 --> 01:58:39.209
+Umesh Mahajan: requirement is that data should be encrypted at transit and rest at any point. So that's why I said, whenever extract happen, encrypt that data and put it into the Sftp server, even on this. Buckets will be encrypted. Sorry I did not change this, but assume that is, I'll just blob storage so encryption is there?
+
+1103
+01:58:39.350 --> 01:58:40.940
+Umesh Mahajan: Then I can
+
+1104
+01:58:44.180 --> 01:58:55.469
+Umesh Mahajan: I can say that when I stored the data, how many users are going to access the data? What is the query? Latency is expected? What is
+
+1105
+01:58:55.470 --> 01:59:20.170
+Umesh Mahajan: the data volume, the data load frequencies data changes data that is coming every day increments in my warehouse, like, initially, it's a 10 Gb, but there is the 500 MB. Data every day. New data get it added every day. What is should be the archival policy purge policy for the data when it should go to glacier storage or
+
+1106
+01:59:20.170 --> 01:59:22.990
+Umesh Mahajan: gold storage after how many days?
+
+1107
+01:59:23.540 --> 01:59:29.689
+Umesh Mahajan: So these are the questions I will prepare, and I will answer this question, I or
+
+1108
+01:59:30.010 --> 01:59:54.760
+Umesh Mahajan: I will prepare the answer or guidelines for this. What are the monitoring tools available? What happened if the data load fails? How to triage that. What? What is the orchestration tool look like? What are the metadata tool look like? How they should query. So these are some questions I will ask or prepare for this
+
+1109
+01:59:55.120 --> 01:59:56.899
+Umesh Mahajan: as a solution. Architect.
+
+1110
+01:59:59.660 --> 02:00:19.939
+Umesh Mahajan: then what is the authentication? Mechanism for web services, tokenization of a data or encryption of a data. Where is the key pair stored? Is there a requirement to change the password every 14 days? Change the keys every 14 days? How it will be automatically done
+
+1111
+02:00:20.410 --> 02:00:25.850
+Umesh Mahajan: right? So these sort of questions I will ask as a solution architect.
+
+1112
+02:00:26.230 --> 02:00:32.999
+Umesh Mahajan: or when I create a document or solution or guidelines? These are the questions I will write.
+
+1113
+02:00:36.470 --> 02:00:39.639
+Umesh Mahajan: so don't worry. You don't need to be
+
+1114
+02:00:39.700 --> 02:00:45.960
+Umesh Mahajan: solution architect so soon. It it comes by experience only. But you can
+
+1115
+02:00:46.040 --> 02:00:47.300
+Umesh Mahajan: try
+
+1116
+02:00:47.620 --> 02:00:51.300
+Umesh Mahajan: and act like that and ask the wise questions.
+
+1117
+02:00:56.230 --> 02:00:56.700
+Umesh Mahajan: Okay.
+
+1118
+02:00:56.700 --> 02:00:57.340
+Venkatesh Allapure: Brazil.
+
+1119
+02:00:57.630 --> 02:01:01.899
+Venkatesh Allapure: hey? This is a part of our solution architecture as a data engineer which probably.
+
+1120
+02:01:01.900 --> 02:01:02.660
+Umesh Mahajan: Last week.
+
+1121
+02:01:02.660 --> 02:01:05.011
+Venkatesh Allapure: This during a migration.
+
+1122
+02:01:05.600 --> 02:01:35.250
+Umesh Mahajan: So data quality problem data those are main problems. You'll see, data is not consistent, not in the format that you expected. So how do you deal with that? Don't always develop for happy scenario, develop for the worst scenarios. Also, if the record get rejected, what should happen, how you will report that these records are rejected. How will you reprocess? This records
+
+1123
+02:01:35.250 --> 02:01:50.690
+Umesh Mahajan: when you build the pipeline, how you can have a fail point, how you can start. So let's say, Mina job, Lika job, execute horiz failure. So next time, when you run, how it will pick from the failure point.
+
+1124
+02:01:51.100 --> 02:02:09.659
+Umesh Mahajan: or if you start from beginning how you can clear and rerun. So you will have to build the pipeline like that. The data quality is another. How you will. You have to write or load your data so that you optimize the performance
+
+1125
+02:02:10.500 --> 02:02:13.569
+Umesh Mahajan: right? So when you build the pipeline, you need to
+
+1126
+02:02:13.650 --> 02:02:16.659
+Umesh Mahajan: take in account these considerations
+
+1127
+02:02:21.040 --> 02:02:24.429
+Umesh Mahajan: and how you can modelize. So few people
+
+1128
+02:02:24.520 --> 02:02:26.619
+Umesh Mahajan: make the code redundant.
+
+1129
+02:02:26.790 --> 02:02:39.850
+Umesh Mahajan: how you can reduce the redundancy of a code and modelize your code so that you don't have to work a lot or support a lot of code if it's modelized.
+
+1130
+02:02:45.570 --> 02:02:48.269
+Venkatesh Allapure: Which chapters come in data quality checksa.
+
+1131
+02:02:49.914 --> 02:02:56.690
+Umesh Mahajan: So reusable. Write a reusable code to data quality checks first.st
+
+1132
+02:02:56.980 --> 02:03:09.725
+Umesh Mahajan: when you get a file structural check, any data, duplicate, check any business validation knowledge check format checks. Then you can have.
+
+1133
+02:03:11.060 --> 02:03:15.849
+Umesh Mahajan: when you load the data post loading checks you can perform.
+
+1134
+02:03:15.860 --> 02:03:16.790
+Umesh Mahajan: then
+
+1135
+02:03:17.870 --> 02:03:23.319
+Umesh Mahajan: data reconciliation, meaning. If the data is incorrect.
+
+1136
+02:03:23.755 --> 02:03:31.240
+Umesh Mahajan: How you get corrected that data and reload the data, the fail data, that thing comes under that.
+
+1137
+02:03:36.630 --> 02:03:40.319
+Venkatesh Allapure: That are, I think, that are a technical checks. Nurser.
+
+1138
+02:03:40.510 --> 02:03:41.880
+Umesh Mahajan: Technical checks. Yeah.
+
+1139
+02:03:44.790 --> 02:03:48.510
+Umesh Mahajan: so right now, I'm mostly telling you the technical things.
+
+1140
+02:03:51.630 --> 02:04:00.470
+Umesh Mahajan: Okay, I think I want to stop now. It's around 8, 45. So I have to start working next 15 min.
+
+1141
+02:04:02.000 --> 02:04:09.970
+Umesh Mahajan: So for any question, just write down here. I have given the access. Anyone who has a link should have an access right now.
+
+1142
+02:04:10.070 --> 02:04:12.449
+Umesh Mahajan: just post your questions here.
+
+1143
+02:04:16.280 --> 02:04:17.000
+Umesh Mahajan: This.
+
+1144
+02:04:18.840 --> 02:04:19.780
+Umesh Mahajan: Okay?
+
+1145
+02:04:20.150 --> 02:04:21.420
+Umesh Mahajan: And
+
+1146
+02:04:21.820 --> 02:04:23.899
+Umesh Mahajan: yeah, I do also have an access.
+
+1147
+02:04:24.310 --> 02:04:36.610
+Umesh Mahajan: Okay, write your questions here. And I'll try to add this details in the Powerpoint and push this Powerpoint, so that anytime, if you want to refer, you can look at that.
+
+1148
+02:04:39.230 --> 02:04:39.660
+Venkatesh Allapure: What is it?
+
+1149
+02:04:39.660 --> 02:04:40.230
+Samir More: Set up.
+
+1150
+02:04:41.373 --> 02:04:49.430
+Samir More: Certainly possible. Right, the didn't migration. I go on premises to Snowflake one day you mentioned about Clayton High.
+
